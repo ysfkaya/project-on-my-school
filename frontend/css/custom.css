@@ -1,0 +1,436 @@
+/********************************************************************************************************
+*
+*
+* hazırlayanlar:  Yusuf Kaya, Tayfun Serin
+* site: Proje Takibim
+* açıklama: Proje Takibim, Kırkağaç Celal Bayar Üniversitesi için bitirme projesi olarak tasarlanmıştır.
+* başlama tarihi: 01.03.2017
+*
+*
+*********************************************************************************************************/
+
+/* Genel Ayarlar */
+body
+{
+    font-family: 'Raleway', Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.8em;
+
+    position: relative;
+    color: #999;
+    background-color: white;
+}
+.modal-open{
+    overflow: auto;
+    padding-right: 0px !important;
+}
+a:hover
+{
+    -webkit-transition: all .3s ease-in-out;
+       -moz-transition: all .3s ease-in-out;
+         -o-transition: all .3s ease-in-out;
+            transition: all .3s ease-in-out;
+    text-decoration: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+{
+    font-family: 'Roboto Slab', Arial, serif;
+    font-weight: bold;
+
+    color: #3c4858;
+}
+
+.section
+{
+    padding: 80px 0;
+
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.has-error .form-control,
+.has-error .form-control:focus{
+    border:2px solid #e24a37 !important;
+    box-shadow: none !important;
+}
+
+.btn-info:focus{
+    border-color: transparent !important;
+}
+.btn:focus{
+
+    outline: 0 !important;
+}
+
+/* sayısal inputlardaki spin gizleme*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+
+/*  header BAŞLANGIÇ */
+.p-nav
+{
+    margin-bottom: 0;
+    padding: 15px 0;
+    min-height:95px;
+    background-color: white;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+.p-nav .navbar-brand
+{
+    font-family: 'Segoe Script','Exo 2',Arial,sans-serif;
+    font-size: 20px;
+    font-style: italic;
+}
+.p-nav .navbar-toggle
+{
+    margin-top: 13px;
+}
+.p-nav .navbar-nav > li > a
+{
+    font-size: 14px;
+    font-weight: 800;
+
+    text-transform: uppercase;
+
+    color: #3c4858;
+}
+.p-nav .navbar-nav > li > a:focus,
+.p-nav .navbar-nav > li > a:hover
+{
+    color: #36a3ad;
+    outline: 0;
+}
+.active a
+{
+    color: #36a3ad !important;
+    background-color: transparent !important;
+}
+.active a:hover
+{
+    color: #3c4858 !important;
+}
+
+.effect-nav {
+    min-height: 60px !important;
+    border-bottom: 2px solid rgba(7, 26, 46, 0.15);
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+
+
+/* banner BAŞLANGIÇ */
+.banner
+{
+    width: 100%;
+    margin-top: 50px;
+
+            background: url('../images/back-img.png') no-repeat center center fixed;
+    -webkit-background-size: cover;
+            background-size: cover;
+
+    -webkit-background: url('../images/back-img.png') no-repeat center center fixed;
+       -moz-background: url('../images/back-img.png') no-repeat center center fixed;
+        -ms-background: url('../images/back-img.png') no-repeat center center fixed;
+         -o-background: url('../images/back-img.png') no-repeat center center fixed;
+}
+@media (max-width:767px)
+{
+    .banner .pull-right
+    {
+        float: none !important;
+    }
+
+    .banner-form.pull-left
+    {
+        float: none !important;
+    }
+
+    .pull-left.banner-form
+    {
+        width: auto !important;
+        margin: 15px;
+    }
+}
+.banner-form
+{
+    padding: 20px;
+
+    border-radius: 6px;
+    background-color: white;
+}
+.banner-form input.form-control
+{
+    height: 45px;
+}
+.banner-form input.form-control:focus,
+.banner-form input.form-control:hover
+{
+            border: 1px solid #878167;
+
+    -webkit-border: 1px solid #878167;
+       -moz-border: 1px solid #878167;
+        -ms-border: 1px solid #878167;
+         -o-border: 1px solid #878167;
+}
+.banner-form .form-control
+{
+    border: 1px solid #ccc;
+    background-color: transparent;
+    box-shadow: none;
+}
+.banner-form .btn-info
+{
+    color: #fff;
+    -webkit-border-radius: 30px;
+       -moz-border-radius: 30px;
+            border-radius: 30px;
+}
+.banner-form .btn-info:hover
+{
+    -webkit-box-shadow: 0px 3px 5px rgba(0, 0, 0, .31);
+            box-shadow: 0px 3px 5px rgba(0, 0, 0, .31);
+}
+
+.banner h1
+{
+    margin-bottom: 25px;
+
+    color: #fff;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
+}
+.banner ul
+{
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+.banner ul li
+{
+    font-size: 18px;
+    line-height: 36px;
+
+    color: #fff;
+}
+
+.pull-left.banner-form
+{
+    width: 35%;
+    height: 350px;
+
+    border-radius: 6px;
+    background-color: white;
+}
+.banner-header
+{
+    border-bottom: 3px solid #ddd;
+}
+.banner-header h4
+{
+    padding-bottom: 5px;
+    padding-left: 20px;
+}
+.banner-body ul li {
+    padding: 5px;
+
+    color: #3c4858;
+    border-bottom: 1px solid #ddd;
+}
+
+
+/* hakkımızda BAŞLANGIÇ */
+.about-left
+{
+    margin-top: 35px ;
+}
+.about-right
+{
+    font-size: 18px;
+
+    margin-top: 35px;
+    margin-left: 10px;
+    padding-right: 23px;
+}
+.about-right h3
+{
+    margin-bottom: 20px;
+
+    text-align: left;
+    text-transform: uppercase;
+}
+.about-right p
+{
+    margin-top: 20px;
+}
+
+/* nasıl çalışır BAŞLANGIÇ*/
+.works
+{
+    width: 100%;
+
+            background: url('../images/works-bg.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+            background-size: cover;
+
+    -webkit-background: url('../images/works-bg.jpg') no-repeat center center fixed;
+       -moz-background: url('../images/works-bg.jpg') no-repeat center center fixed;
+        -ms-background: url('../images/works-bg.jpg') no-repeat center center fixed;
+         -o-background: url('../images/works-bg.jpg') no-repeat center center fixed;
+}
+
+.works-title
+{
+    margin-top: 50px;
+    margin-bottom: 60px;
+}
+.works-title h2,
+.works-title p
+{
+    color: white;
+}
+.btn-play
+{
+    font-size: 40px;
+    line-height: 84px;
+
+    display: block;
+
+    width: 84px;
+    height: 84px;
+    margin: 0 auto;
+
+    cursor: pointer;
+    text-align: center;
+
+    color: #fff;
+    border: 2px solid #fff;
+    -webkit-border-radius: 50px;
+       -moz-border-radius: 50px;
+            border-radius: 50px;
+    background: rgba(0,0,0,.2);
+}
+.btn-play i
+{
+    margin-left: 5px;
+}
+.btn-play:hover
+{
+    -webkit-transition: all .3s ease-in-out;
+       -moz-transition: all .3s ease-in-out;
+         -o-transition: all .3s ease-in-out;
+            transition: all .3s ease-in-out;
+
+    background: rgba(255,255,255,.1);
+}
+
+/* iletişim BAŞLANGIÇ */
+.contact
+{
+    background-color: #f7f7f7;
+}
+.form
+{
+    margin-top: 80px;
+}
+.form .form-control
+{
+    height: 43px;
+
+    color: #909090;
+    background-color: #f7f7f7;
+}
+.form .form-control:focus
+{
+    border: 2px solid #ccc;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+}
+.btn-custom
+{
+    color: rgb(60, 60, 60);
+    border: 2px solid #ccc;
+    -webkit-border-radius: 10px;
+       -moz-border-radius: 10px;
+            border-radius: 10px;
+    background: #f7f7f7;
+
+        -ms-border-radius: 10px;
+         -o-border-radius: 10px;
+}
+
+
+/* copright BAŞLANGIÇ*/
+.copyright
+{
+    padding: 10px;
+
+    background-color: white;
+}
+.copyright span
+{
+    margin-right: 15px;
+}
+.copyright a
+{
+    margin-right: 5px;
+
+    color: #bbb;
+}
+.copyright a:hover
+{
+    text-decoration: underline;
+}
+
+
+/* modal */
+
+.modal {
+    text-align: center;
+    padding: 0!important;
+}
+
+.modal:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -4px;
+}
+
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
+
+/* loading */
+
+#loading{
+    position: fixed;
+    z-index: 99999;
+    width: 100%;
+    height: 100%;
+    top:0px;
+    bottom: 0px;
+    left:0px;
+    right:0px;
+    margin: auto;
+    background: url("../images/1.gif") no-repeat center center ;
+    background-color: rgba(0, 0, 0, 0.70);
+}
+

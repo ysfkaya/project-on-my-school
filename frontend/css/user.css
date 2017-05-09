@@ -1,0 +1,248 @@
+/********************************************************************************************************
+*
+*
+* hazırlayanlar:  Yusuf Kaya, Tayfun Serin
+* site: Proje Takibim
+* açıklama: Proje Takibim, Kırkağaç Celal Bayar Üniversitesi için bitirme projesi olarak tasarlanmıştır.
+* başlama tarihi: 01.03.2017
+*
+*
+*********************************************************************************************************/
+
+/* Genel Ayarlar */
+body
+{
+    font-family: 'Roboto',sans-serif;
+    font-size: 14px;
+    line-height: 1.8em;
+
+    position: relative;
+
+    color: #999;
+    background-color: #F7F5EE;
+}
+a:hover
+{
+    -webkit-transition: all .3s ease-in-out;
+       -moz-transition: all .3s ease-in-out;
+         -o-transition: all .3s ease-in-out;
+            transition: all .3s ease-in-out;
+    text-decoration: none;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+{
+    font-family: 'Roboto',sans-serif;
+    font-weight: bold;
+    color: #3c4858;
+}
+
+
+/* sayısal inputlardaki spin gizleme*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+/* profil */
+.profil{
+    margin-top:50px;
+}
+
+/* profil-left */
+.user-heading{
+    text-align: center;
+    padding: 30px;
+    background-color: #3ca2e0;
+    border-radius: 4px 4px 0 0;
+    -webkit-border-radius: 4px 4px 0 0;
+}
+
+.user-heading a.image {
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border: 10px solid rgba(255, 255, 255, .3);
+    display: inline-block;
+}
+
+.user-heading a img{
+    width: 117px;
+    height: 117px;
+    border-radius: 50%;
+}
+
+.user-links ul{
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+.user-links ul li{
+    line-height: 25px;
+}
+.user-links ul li a{
+    display: block;  
+    padding: 12px 12px 12px 17px;
+    font-size: 15px;
+    border-bottom: 1px solid #676767;
+    border-left: 10px solid #fff;
+    color: #656565;
+    font-family: 'Roboto',sans-serif;
+    text-decoration: none !important;
+}
+
+.user-links ul li a i{
+    padding-right: 10px;
+    font-size: 14px;
+}
+
+.user-links ul li:last-child a{
+    border-bottom: none;
+}
+
+.user-links ul li a:hover{
+    background-color: #E0E0E0;
+    border-left: 10px solid #2175A1;
+
+}
+
+.user-links ul li a.active{
+    background-color: #E0E0E0;
+    border-left: 10px solid #2175A1;
+}
+
+
+/* profil-right */
+
+.content{
+    padding: 20px;
+}
+
+.content-header h3{
+    border-bottom: 1px solid #ddd;
+    display: block;
+    margin-bottom: 15px;
+    padding: 10px 0px;
+    letter-spacing: 1px;
+}
+.content-header h3 i {
+    margin: 0px 10px;
+    font-size: 28px;
+}
+
+.content-body{
+    padding: 30px 0px;
+}
+.box-menu{
+    width: 240px;
+    height: 160px;
+    color:white;
+    display: block;
+    padding-top: 35px;
+    margin: 15px 15px 15px;
+    margin-left: 70px;
+}
+.box-menu i {
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+.box-menu span{
+    font-size: 18px;
+}
+
+.box-menu:hover{
+    background-color:#979696;
+}
+
+/* renkler */
+.box-menu-black{
+    background-color: #1D1D1D;
+}
+.box-menu-green{
+    background-color: #5EBB70;
+}
+.box-menu-blue{
+    background-color: #248ED2;
+}
+.box-menu-orange{
+    background-color: #FA8443;
+}
+.box-menu-light-red{
+    background-color: #FF2A57;
+}
+.box-menu-light-brown{
+    background-color: #CFBA64;
+}
+
+@media (max-width: 768px) {
+    .box-menu{
+        width: auto;
+        margin-left: 15px;
+    }
+}
+
+@media (min-width: 992px) and (min-width: 1200px){
+    .box-menu{
+        margin-left: 22px;
+    }
+}
+
+/* form-control */
+.form-control{
+    border-color: transparent;
+    outline: 0;
+    box-shadow: none;
+    border-bottom: 1px solid #C2C2C2;
+    font-size: 15px;
+    border-radius: 0px;
+}
+.form-control:focus{
+    -webkit-box-shadow: inset 0 -2px 0 #2196f3;
+    box-shadow: inset 0 -2px 0 #2196f3;
+    border-radius: 0px;
+    border-color: transparent;
+    -webkit-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+.input-group .form-control{
+    background-color: #eee !important;
+    -webkit-border: 1px solid #ccc;
+    -moz-border: 1px solid #ccc;
+    -ms-border: 1px solid #ccc;
+    -o-border: 1px solid #ccc;
+    border: 1px solid #ccc;
+    border-left: none;
+}
+
+.input-group .form-control:focus{
+    box-shadow: none !important;
+}
+
+
+
+.git{
+    border:1px solid #ddd !important;
+    line-height: 20px;
+    border-radius: 0px !important;
+}
+
+.dropdown-toggle:focus,
+.filter-option:focus
+{
+    outline: 0 !important;
+}
+
+/* .btn-git */
+.btn-git{
+  line-height:21px;
+  background-color : #ddd;
+}

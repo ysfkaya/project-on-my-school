@@ -1,0 +1,470 @@
+/********************************************************************************************************
+*
+*
+* hazırlayanlar:  Yusuf Kaya, Tayfun Serin
+* site: Proje Takibim
+* açıklama: Proje Takibim, Kırkağaç Celal Bayar Üniversitesi için bitirme projesi olarak tasarlanmıştır.
+* başlama tarihi: 01.03.2017
+*
+*
+*********************************************************************************************************/
+
+/* Genel Ayarlar */
+@import url('../../frontend/css/user.css');
+body
+{
+    font-family: 'Raleway', Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.8em;
+
+    color: #999;
+    background-color: rgb(231, 237, 219);
+}
+a:hover
+{
+    -webkit-transition: all .3s ease-in-out;
+       -moz-transition: all .3s ease-in-out;
+         -o-transition: all .3s ease-in-out;
+            transition: all .3s ease-in-out;
+    text-decoration: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+{
+    font-family: 'Roboto', Arial, serif;
+    font-weight: bold;
+
+    color: #3c4858;
+}
+
+/* navbar */
+.navbar
+{
+    margin-bottom: 0;
+}
+
+/* subnavbar */
+
+.subnavbar
+{
+    margin-bottom: 2.5em;
+}
+
+.subnavbar-inner
+{
+    height: 60px;
+
+    border-bottom: 1px solid #d6d6d6;
+    background: #fff;
+}
+
+.subnavbar .container > ul
+{
+    display: inline-block;
+
+    height: 80px;
+    margin: 0;
+    padding: 0;
+}
+
+.subnavbar .container > ul > li
+{
+    float: left;
+
+    min-width: 90px;
+    height: 60px;
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+
+    text-align: center;
+
+    border-left: 1px solid #d9d9d9;
+}
+
+.subnavbar .container > ul > li > a
+{
+    font-size: 12px;
+    font-weight: bold;
+
+    display: block;
+
+    height: 100%;
+    padding: 0 15px;
+
+    color: #b2afaa;
+}
+
+.subnavbar .container > ul > li > a:hover
+{
+    text-decoration: none;
+
+    color: #888;
+}
+
+.subnavbar .container > ul > li > a > i
+{
+    font-size: 20px;
+
+    display: block;
+
+    width: 24px;
+    height: 24px;
+    padding-top: 8px;
+    padding-bottom: 20px;
+    padding-left: 35%;
+}
+
+.subnavbar .container > ul > li > a > span
+{
+    display: block;
+}
+
+
+.subnavbar .container > ul > li.active > a
+{
+    color: #383838;
+    border-bottom: 3px solid #ff7f74;
+}
+
+@media (max-width: 767px)
+{
+    .subnavbar
+    {
+        margin-right: -20px;
+        margin-left: -20px;
+    }
+
+
+    .subnavbar-inner
+    {
+        height: auto;
+    }
+
+    .subnavbar .container > ul
+    {
+        width: 100%;
+        height: auto;
+
+        border: none;
+    }
+
+    .subnavbar .container > ul > li
+    {
+        width: 33%;
+        height: 100%;
+        margin-bottom: -7px;
+
+        border: none;
+    }
+
+
+
+    .subnavbar .container > ul > li.active > a
+    {
+        font-size: 11px;
+
+        background: transparent;
+    }
+
+    .subnavbar .container > ul > li > a > i
+    {
+        font-size: 20px;
+
+        display: block;
+
+        margin-bottom: 0;
+        padding-left: 45%;
+    }
+}
+
+
+/* widget  projeler*/
+.widget
+{
+    position: relative;
+
+    clear: both;
+    overflow: hidden;
+
+    width: auto;
+    margin-bottom: 2em;
+}
+/* gradient link -> http://www.colorzilla.com/gradient-editor/*/
+.widget-header
+{
+    line-height: 40px;
+
+    position: relative;
+
+    height: 40px;
+
+    border: 1px solid #d6d6d6;
+    background: rgb(254,255,232,.69); /* Old browsers */
+    background:    -moz-linear-gradient(top, rgba(254,255,232,1) 0%, rgba(214,219,191,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(254,255,232,1) 0%,rgba(214,219,191,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background:         linear-gradient(to bottom, rgba(254,255,232,1) 0%,rgba(214,219,191,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feffe8', endColorstr='#d6dbbf',GradientType=0 ); /* IE6-9 */
+}
+.widget-header h3
+{
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 18px;
+
+    position: relative;
+    bottom: 8px;
+    left: 20px;
+
+    display: inline-block;
+
+    margin-right: 3em;
+
+    color: #525252;
+    text-shadow: 1px 1px 2px rgba(255,255,255,.5);
+}
+.widget-header i
+{
+    font-size: 16px;
+
+    display: inline-block;
+
+    margin-right: -2px;
+    margin-bottom: 20px;
+    margin-left: 13px;
+
+    vertical-align: middle;
+
+    color: #555;
+}
+.widget-content
+{
+    padding: 10px 15px 15px;
+
+    border: 1px solid #d6d6d6;
+    background-color: #fff;
+}
+.widget-content > h6.help-text
+{
+    font-family: 'Exo 2',sans-serif;
+    font-size: 13px;
+    font-weight: normal;
+
+    width: 100%;
+    padding-bottom: 10px;
+
+    color: #aca7a7;
+    border-bottom: 1px solid rgba(158, 158, 158, .56);
+}
+/* projeler */
+.details
+{
+    display: table;
+
+    width: 100%;
+
+    text-align: center;
+}
+.details > div
+{
+    position: relative;
+    top: -10px;
+
+    display: table-cell;
+
+    width: 25%;
+    height: 90px;
+    padding: 0;
+
+    text-align: center;
+
+    border-right: 1px solid rgb(138, 138, 138);
+}
+.details > div:last-child
+{
+    border: 0;
+}
+.details > div > a{
+    color: #2b2b2b;
+}
+.details > div > a >span.value
+{
+    font-size: 35px;
+    font-weight: bold;
+    line-height: 1em;
+
+    color: #545454;
+}
+.details > div > a > span.text
+{
+    font-size: 20px;
+
+    display: block;
+
+    margin-top: 10px;
+    padding-top: 10px;
+
+    border-top: 1px solid rgb(131, 131, 131);
+}
+.details > div > a > i
+{
+    font-size: 45px;
+    line-height: 1.5em;
+
+    display: block;
+
+    padding: 0;
+}
+.details > div > a > i:hover
+{
+    cursor: pointer;
+
+    color: rgba(196, 39, 39, .66);
+}
+
+/* olaylar */
+.events
+{
+    display: block;
+
+    width: 100%;
+}
+.events ul
+{
+    overflow-y: auto;
+
+    max-height: 450px;
+    margin-left: 10px;
+    padding-top: 20px;
+    padding-left: 5px;
+
+    list-style: none;
+}
+.events ul > li
+{
+    font-family: 'Roboto',sans-serif;
+
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+
+    border-bottom: 2px solid rgba(176, 176, 176, .72);
+}
+.events ul > li > h5.event
+{
+    text-transform: capitalize;
+
+    color: rgb(89, 89, 89);
+}
+.events ul > li > h5.event i
+{
+    color: rgba(207, 14, 14, 1);
+}
+.events ul > li > span > b.object
+{
+    font-size: 14px;
+    font-weight: bold;
+
+    color: rgb(69, 69, 69);
+}
+.events ul > li > span > i
+{
+    color: rgb(144, 144, 144);
+}
+
+/* projeler.html */
+.panel-body table td {
+    font-size: 13px;
+    font-family: 'Exo 2',sans-serif;
+    margin: 0px 10px;
+}
+.panel-body table td a i{
+    font-size:14px;
+}
+.panel-heading ul > li > a {
+    font-size : 14px;
+    color: rgb(105, 91, 91);
+}
+.panel-heading ul > li > a > i {
+    font-size: 16px;
+    color: rgb(75, 145, 143);
+}
+.tab-content table th:last-child{
+    width: 20% !important;
+}
+
+
+/* proje detayları */
+.proje_ekip{
+    text-align: left;
+    margin-top: 5px;
+}
+.proje_ekip a img{
+  width:32px;
+  height:32px;
+}
+
+/* 404 Sayfası */
+
+.hata-icerik {
+    margin-top: 4em;
+    margin-bottom: 4em;
+    text-align: center;
+}
+
+.hata-icerik h1 {
+    margin-bottom: .5em;
+    
+    font-size: 120px;
+    line-height: 1em;
+}
+
+.hata-icerik h2 {
+    margin-bottom: .75em;
+    font-size: 28px;
+}
+
+.hata-icerik .hata-detay {
+    margin-bottom: 1.5em;
+    
+    font-size: 16px;
+}
+
+.hata-icerik .hata-link a {
+    margin: 0 .5em;
+}
+
+
+.mesaj{
+    padding: 10px 0px;
+    border-top: 2px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.mesaj:first-child{
+    border:none;
+}
+
+.mesaj-body{
+    margin-left:40px;
+    padding: 20px;
+}
+
+.mesaj-body .well{
+    margin-top: 10px;
+    font-size :15px;
+}
+
+.mesaj img.img-circle {
+  width: 32px;
+  height: 32px;
+}
+
+
+
