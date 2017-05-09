@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <a href = "https://proje-takip.000webhostapp.com/"> DEMO </a>
 
 ## CHANGE
