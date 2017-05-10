@@ -64,7 +64,7 @@ function olay_girdi($tip,$olay){
         return  "<strong>".$bagla['ogrenci_no']."</strong> numaralı öğrenci eposta adresini değiştirdi.";
 
         case 'kayıt':
-        $ogrenci_id = $olay['ogrenci_id'];
+        $ogrenci_id = $olay['ogrenci_id'];        
         $bagla = $db->query("SELECT ogrenciler.ogrenci_no FROM olaylar LEFT JOIN ogrenciler ON ogrenciler.ogrenci_id = $ogrenci_id")->fetch(PDO::FETCH_ASSOC);
         return  "<strong>".$bagla['ogrenci_no']."</strong> numaralı öğrenci kayıt oldu.";
 
