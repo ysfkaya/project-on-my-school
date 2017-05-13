@@ -12,10 +12,10 @@
             'id' => $id
         ));         
         if ($sonuc){
-            olay(array("Bir Proje Silindi","proje-sil"),null,getSession('id'));
+            isSession('ogretmen_id') ? null : olay(array("Bir Proje Silindi","proje-sil"),null,getSession('id'));
             $array['basarili'] = "Proje başarıyla silindi.";
         }else{
-            $array['hata'] = $db->erroInfo()[2];
+            $array['hata'] = $db->errorInfo()[0];
         }        
         
         echo json_encode($array);

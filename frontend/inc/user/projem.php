@@ -88,7 +88,7 @@
                         <label class="col-md-4 control-label">Proje Dosyaları</label>
                         <div class="col-md-8"> 
                             <?php if($proje['proje_uygunluk'] == 1):?>
-                                <input type="file" name="proje_dosya[]" multiple class="file-loading">
+                                <input type="file" name="proje_dosya[]" multiple="true" class="file-loading">
                             <?php else:?>
                                 <?php warning('Projeniz henüz onaylanmadı. Onaylandıktan sonra dosya gönderebilirsiniz.');?>
                             <?php endif;?>

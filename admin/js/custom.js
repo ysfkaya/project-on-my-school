@@ -213,7 +213,6 @@ $(document).ready(function () {
 		  		dataType: 'json',
 		  		data: {id:_id},
 		  		success : function(data) {
-                    if(data.basarili){
                         swal({
                             title:'Başarılı !',
                             text:data.basarili,
@@ -226,18 +225,18 @@ $(document).ready(function () {
                         setTimeout(function() {
                             window.location.href = BACKEND_URL+"index.php?do=projeler";
                         },2000);
-                    }else{
-                        swal({
-                            title:'Hata !',
-                            text:data.hata,
-                            type:'error',
-                            closeOnConfirm: true,
-                            animation: "slide-from-top",
-                            showConfirmButton : true,
-                            confirmButtonText:'Tamam'
+                },
+                error : function (data) {
+                    swal({
+                        title:'Hata !',
+                        text:data.hata,
+                        type:'error',
+                        closeOnConfirm: true,
+                        animation: "slide-from-top",
+                        showConfirmButton : true,
+                        confirmButtonText:'Tamam'
 
-                        });
-                    }
+                    });
                 }
 		  	});
 		  	

@@ -10,7 +10,7 @@ $olaylar = $db->query("SELECT * FROM olaylar")->fetchAll(PDO::FETCH_ASSOC);
 <div class="row">
     <div class="col-md-12">
       <div class="widget">
-            <div class="widget-header">
+            <div class="widget-header" id="target-6">
               <i class="fa fa-list"></i>
               <h3> Projeler</h3>
             </div>
@@ -30,7 +30,7 @@ $olaylar = $db->query("SELECT * FROM olaylar")->fetchAll(PDO::FETCH_ASSOC);
   <div class="row">
     <div class="col-md-12">
       <div class="widget">
-          <div class="widget-header">
+          <div class="widget-header" id="target-7">
             <i class="fa fa-history"></i>
             <h3>Olaylar</h3>
           </div>

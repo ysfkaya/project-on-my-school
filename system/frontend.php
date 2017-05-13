@@ -28,6 +28,7 @@ function icerikler(){
     global $ogrenci;
     global $ayar;
     $do = get('do') ? get('do') : 'index';
+
     switch ($do){
         case 'index':
             $yeni_mesajlar = yeni_mesajlar(true);
@@ -151,10 +152,11 @@ function proje(){
 
 function proje_ekle(){
     global $db;
+    global $ogrenci;
     if ($ogrenci['proje_id'] != null) {
         go(url('projem'));
     }
-    if (isPost() && post('proje') == true) {
+    if (isPost() && post('proje_ekle') == true) {
         $tur = post('proje_tur');
         $ekip = post('proje_ekip') && !empty(post('proje_ekip')) ? post('proje_ekip') : null;
         $konu = post('proje_konu');
@@ -209,7 +211,7 @@ function proje_ekle(){
             }
         }
         if ($sonuc && $s) {
-            olay(array("Proje Eklendi","proje-eklendi"),$db->lastInsertId(),getSession('id'));
+            olay(array("Proje Eklendi","proje-eklendi"),$proje_id,getSession('id'));
             mkdir($dosya,0777);
             success('Proje başarıyla eklendi. Yönlendiriliyorsunuz.');
             go(url('projem'),2);

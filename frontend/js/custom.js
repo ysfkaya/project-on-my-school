@@ -279,6 +279,7 @@ $(document).ready(function(){
                             inputPlaceholder: "Onay kodunu buraya giriniz."
                         },
                         function(inputValue){
+                            inputValue = $.trim(inputValue);
                             if (inputValue === false) return false;
 
                             if (inputValue === "") {

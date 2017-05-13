@@ -35,7 +35,35 @@
             , title: 'Yetkili Kişiler'
             , text: 'Bu kısımda ekli olan yetkili öğretmenleri görebilir ve yetkili öğretmen ekleyebilirsiniz.'
         });
-        
+
+        guidely.add ({
+            attachTo: '#target-4'
+            , anchor: 'bottom_middle'
+            , title: 'Site Ayarları'
+            , text: 'Sitenizin nasıl adlandırılacağını ve site ile ilgili küçük bilgilendirmede bulunabilirsiniz.'
+        });
+
+        guidely.add ({
+            attachTo: '#target-5'
+            , anchor: 'bottom_middle'
+            , title: 'Profil Ayarları'
+            , text: 'Kullanıcı adınızı ve şifrenizi bu bölümden değiştirebilirsiniz.'
+        });
+
+
+        guidely.add ({
+            attachTo: '#target-6'
+            , anchor: 'top_left'
+            , title: 'Projeler'
+            , text: 'Bu bölümde kaç tane projenin kayıtlı olduğunu görebilirsiniz.'
+        });
+
+        guidely.add ({
+            attachTo: '#target-7'
+            , anchor: 'top_left'
+            , title: 'Olaylar Penceresi'
+            , text: 'Bu bölümde öğrencilerin yapmış olduğu olaylar listelenmektedir.'
+        });
         
         guidely.init ({
             welcomeTitle : 'Admin paneline hoş geldiniz.',

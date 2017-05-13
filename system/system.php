@@ -313,7 +313,11 @@ function mailGonder($eposta,
 
 function olay($olay = array(),$proje_id = null , $ogrenci_id = null,$mesaj_id = null,$dosya_id = null){
     global $db;
-    $tarih = date("Y-m-d H:i:s");   
+    $tarih = date("Y-m-d H:i:s");
+    filter($proje_id);
+    filter($mesaj_id);
+    filter($ogrenci_id);
+    filter($mesaj_id);
     $ekle = $db->prepare("INSERT INTO olaylar SET
         proje_id = :proje,
         ogrenci_id = :ogrenci,
@@ -335,5 +339,9 @@ function olay($olay = array(),$proje_id = null , $ogrenci_id = null,$mesaj_id = 
 }
 
 
+function filter (&$input) {
+    if (!is_int($input) && !is_null($input)){
+        settype($input,'int');
+    }
 
-
+}

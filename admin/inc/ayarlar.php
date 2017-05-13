@@ -77,14 +77,6 @@ echo !defined("ADMIN") ? die("İzinsiz Giriş İsteği?") : null;
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-4">Site Logo</label>
-                        <div class="col-md-6">
-                         <div class="kv-avatar" style="width:45%">
-                            <input type="file" name="site_logo" id="resim1" data-img="<?=$ayar['site_logo'];?>" class="file-loading">
-                        </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label class="control-label col-md-4">Anasayfa Logo</label>
                         <div class="col-md-6">
                             <div class="kv-avatar" style="width:45%">

@@ -5,8 +5,8 @@
 <div class="content-body">
     <div class="row">
         <div class="col-lg-12">
-            <form action="#" method="post" class="form-horizontal" enctype="multipart/form-data">
-                <input type="hidden" name="proje" value="true">
+            <form action="<?=url('proje-ekle')?>" method="post" class="form-horizontal" enctype="multipart/form-data">
+                <input type="hidden" name="proje_ekle" value="true">
                 <fieldset>
                     <div class="form-group">
                         <label class="col-md-4 control-label">Çalışma Türü</label>

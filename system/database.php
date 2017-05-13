@@ -7,8 +7,7 @@ ob_start();
 date_default_timezone_set('Etc/GMT-3');
 /* Veritabanı Bağlantısı */
 try{
-    $db = new PDO("mysql:host=localhost;dbname=proje_takip;charset=utf8","root","root",
-        array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
+    $db = new PDO("mysql:host=localhost;dbname=proje_takip;charset=utf8","root","root",array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }catch (PDOException $e){
     die($e->getMessage());

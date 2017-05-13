@@ -119,20 +119,20 @@
                 uploadUrl: URL+"/ajax/dosya_yukle.php",
                 uploadAsync: true,
                 overwriteInitial: false,
-
+                maxFileSize:5242880,
                 initialPreviewConfig: [
-                    <?php 
+                    <?php
                         $dosyalar = dosya_listele($proje['proje_id'],true);
                         foreach ($dosyalar as $key => $value) {
                     ?>
-                    {size: <?=$value['dosya_boyut']?>, filetype: "rar", caption: "<?=$value['dosya_ad']?>", filename: "<?=$value['dosya_ad']?>", url: URL+"/ajax/dosya_sil.php", key: <?=$value['dosya_id']?>}, 
+                    {size: <?=$value['dosya_boyut']?>, filetype: "rar", caption: "<?=$value['dosya_ad']?>", filename: "<?=$value['dosya_ad']?>", url: URL+"/ajax/dosya_sil.php", key: <?=$value['dosya_id']?>},
                     <?php
                         }
                     ?>
-                     
+
                 ],
                 initialPreview: [
-                    <?php 
+                    <?php
                         $dosyalar = dosya_listele($proje['proje_id']);
                         $listele = array();
                         foreach ($dosyalar as $key => $value) {
@@ -143,14 +143,16 @@
                 ],
                 initialPreviewAsData: true, // defaults markup
                 initialPreviewFileType: 'image', // image is the default and can be overridden in config below
-                uploadExtraData: {
-                    id: _id
+                uploadExtraData: function () {
+                    return {
+                        id : _id
+                    }
                 },
                 preferIconicPreview: true,
                 previewFileIconSettings: {
                     'zip': '<i class="fa fa-file-archive-o text-muted"></i>',
                 },
-                previewFileExtSettings: { 
+                previewFileExtSettings: {
                     'zip': function(ext) {
                         return ext.match(/(zip|rar|tar|gzip|gz|7z)$/i);
                     },
@@ -161,7 +163,7 @@
                 if (confirm("Bu dosya kalıcı olarak silinecektir !")) {
                     abort = false;
                 }
-                return abort; // you can also send any data/object that you can receive on `filecustomerror` event
+                return abort;
             });
 
             <?php endif;?>

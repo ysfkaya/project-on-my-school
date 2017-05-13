@@ -12,8 +12,8 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="<?= url(); ?>">Kontrol Paneli</a></li>
-                <li><a href="<?= url('ayarlar'); ?>">Ayarlar</a></li>
-                <li><a href="<?= url('profil'); ?>">Profil</a></li>
+                <li id="target-4"><a href="<?= url('ayarlar'); ?>">Ayarlar</a></li>
+                <li id="target-5"><a href="<?= url('profil'); ?>">Profil</a></li>
                 <li><a href="<?= url('cikis'); ?>">Çıkış Yap</a></li>
             </ul>
         </div>

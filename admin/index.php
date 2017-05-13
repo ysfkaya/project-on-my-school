@@ -5,7 +5,10 @@
 
     if(isLogin() && isAdmin()){
         define('ADMIN',true);
-    }else{
+    }else if (isUSer()){
+        die("Kullanıcı girişi mevcut. Lütfen ilk önce oturumu kapatınız...");
+    }
+    else{
         go(url('giris.php'));
     }
 
