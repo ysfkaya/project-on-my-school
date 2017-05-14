@@ -1,199 +1,275 @@
-mysql  Ver 14.14 Distrib 5.5.55, for debian-linux-gnu (x86_64) using readline 6.3
-Copyright (c) 2000, 2017, Oracle and/or its affiliates. All rights reserved.
+-- phpMyAdmin SQL Dump
+-- version 4.0.10deb1
+-- http://www.phpmyadmin.net
+--
+-- Anamakine: localhost
+-- Üretim Zamanı: 13 May 2017, 21:47:04
+-- Sunucu sürümü: 5.5.55-0ubuntu0.14.04.1
+-- PHP Sürümü: 5.6.30-10+deb.sury.org~trusty+2
 
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
-Usage: mysql [OPTIONS] [database]
-  -?, --help          Display this help and exit.
-  -I, --help          Synonym for -?
-  --auto-rehash       Enable automatic rehashing. One doesn't need to use
-                      'rehash' to get table and field completion, but startup
-                      and reconnecting may take a longer time. Disable with
-                      --disable-auto-rehash.
-                      (Defaults to on; use --skip-auto-rehash to disable.)
-  -A, --no-auto-rehash 
-                      No automatic rehashing. One has to use 'rehash' to get
-                      table and field completion. This gives a quicker start of
-                      mysql and disables rehashing on reconnect.
-  --auto-vertical-output 
-                      Automatically switch to vertical output mode if the
-                      result is wider than the terminal width.
-  -B, --batch         Don't use history file. Disable interactive behavior.
-                      (Enables --silent.)
-  --character-sets-dir=name 
-                      Directory for character set files.
-  --column-type-info  Display column type information.
-  -c, --comments      Preserve comments. Send comments to the server. The
-                      default is --skip-comments (discard comments), enable
-                      with --comments.
-  -C, --compress      Use compression in server/client protocol.
-  -#, --debug[=#]     This is a non-debug version. Catch this and exit.
-  --debug-check       Check memory and open file usage at exit.
-  -T, --debug-info    Print some debug info at exit.
-  -D, --database=name Database to use.
-  --default-character-set=name 
-                      Set the default character set.
-  --delimiter=name    Delimiter to be used.
-  --enable-cleartext-plugin 
-                      Enable/disable the clear text authentication plugin.
-  -e, --execute=name  Execute command and quit. (Disables --force and history
-                      file.)
-  -E, --vertical      Print the output of a query (rows) vertically.
-  -f, --force         Continue even if we get an SQL error.
-  -G, --named-commands 
-                      Enable named commands. Named commands mean this program's
-                      internal commands; see mysql> help . When enabled, the
-                      named commands can be used from any line of the query,
-                      otherwise only from the first line, before an enter.
-                      Disable with --disable-named-commands. This option is
-                      disabled by default.
-  -i, --ignore-spaces Ignore space after function names.
-  --init-command=name SQL Command to execute when connecting to MySQL server.
-                      Will automatically be re-executed when reconnecting.
-  --local-infile      Enable/disable LOAD DATA LOCAL INFILE.
-  -b, --no-beep       Turn off beep on error.
-  -h, --host=name     Connect to host.
-  -H, --html          Produce HTML output.
-  -X, --xml           Produce XML output.
-  --line-numbers      Write line numbers for errors.
-                      (Defaults to on; use --skip-line-numbers to disable.)
-  -L, --skip-line-numbers 
-                      Don't write line number for errors.
-  -n, --unbuffered    Flush buffer after each query.
-  --column-names      Write column names in results.
-                      (Defaults to on; use --skip-column-names to disable.)
-  -N, --skip-column-names 
-                      Don't write column names in results.
-  --sigint-ignore     Ignore SIGINT (CTRL-C).
-  -o, --one-database  Ignore statements except those that occur while the
-                      default database is the one named at the command line.
-  --pager[=name]      Pager to use to display results. If you don't supply an
-                      option, the default pager is taken from your ENV variable
-                      PAGER. Valid pagers are less, more, cat [> filename],
-                      etc. See interactive help (\h) also. This option does not
-                      work in batch mode. Disable with --disable-pager. This
-                      option is disabled by default.
-  -p, --password[=name] 
-                      Password to use when connecting to server. If password is
-                      not given it's asked from the tty.
-  -P, --port=#        Port number to use for connection or 0 for default to, in
-                      order of preference, my.cnf, $MYSQL_TCP_PORT,
-                      /etc/services, built-in default (3306).
-  --prompt=name       Set the mysql prompt to this value.
-  --protocol=name     The protocol to use for connection (tcp, socket, pipe,
-                      memory).
-  -q, --quick         Don't cache result, print it row by row. This may slow
-                      down the server if the output is suspended. Doesn't use
-                      history file.
-  -r, --raw           Write fields without conversion. Used with --batch.
-  --reconnect         Reconnect if the connection is lost. Disable with
-                      --disable-reconnect. This option is enabled by default.
-                      (Defaults to on; use --skip-reconnect to disable.)
-  -s, --silent        Be more silent. Print results with a tab as separator,
-                      each row on new line.
-  -S, --socket=name   The socket file to use for connection.
-  --ssl               Enable SSL for connection (automatically enabled with
-                      other flags).
-  --ssl-ca=name       CA file in PEM format (check OpenSSL docs, implies
-                      --ssl).
-  --ssl-capath=name   CA directory (check OpenSSL docs, implies --ssl).
-  --ssl-cert=name     X509 cert in PEM format (implies --ssl).
-  --ssl-cipher=name   SSL cipher to use (implies --ssl).
-  --ssl-key=name      X509 key in PEM format (implies --ssl).
-  --ssl-verify-server-cert 
-                      Verify server's "Common Name" in its cert against
-                      hostname used when connecting. This option is disabled by
-                      default.
-  --ssl-mode=name     SSL connection mode.
-  -t, --table         Output in table format.
-  --tee=name          Append everything into outfile. See interactive help (\h)
-                      also. Does not work in batch mode. Disable with
-                      --disable-tee. This option is disabled by default.
-  -u, --user=name     User for login if not current user.
-  -U, --safe-updates  Only allow UPDATE and DELETE that uses keys.
-  -U, --i-am-a-dummy  Synonym for option --safe-updates, -U.
-  -v, --verbose       Write more. (-v -v -v gives the table output format).
-  -V, --version       Output version information and exit.
-  -w, --wait          Wait and retry if connection is down.
-  --connect-timeout=# Number of seconds before connection timeout.
-  --max-allowed-packet=# 
-                      The maximum packet length to send to or receive from
-                      server.
-  --net-buffer-length=# 
-                      The buffer size for TCP/IP and socket communication.
-  --select-limit=#    Automatic limit for SELECT when using --safe-updates.
-  --max-join-size=#   Automatic limit for rows in a join when using
-                      --safe-updates.
-  --secure-auth       Refuse client connecting to server if it uses old
-                      (pre-4.1.1) protocol.
-  --server-arg=name   Send embedded server this as a parameter.
-  --show-warnings     Show warnings after every statement.
-  --plugin-dir=name   Directory for client-side plugins.
-  --default-auth=name Default authentication client-side plugin to use.
 
-Default options are read from the following files in the given order:
-/etc/my.cnf /etc/mysql/my.cnf /usr/etc/my.cnf ~/.my.cnf 
-The following groups are read: mysql client
-The following options may be given as the first argument:
---print-defaults        Print the program argument list and exit.
---no-defaults           Don't read default options from any option file.
---defaults-file=#       Only read default options from the given file #.
---defaults-extra-file=# Read this file after the global files are read.
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
-Variables (--variable-name=value)
-and boolean options {FALSE|TRUE}  Value (after reading options)
---------------------------------- ----------------------------------------
-auto-rehash                       TRUE
-auto-vertical-output              FALSE
-character-sets-dir                (No default value)
-column-type-info                  FALSE
-comments                          FALSE
-compress                          FALSE
-debug-check                       FALSE
-debug-info                        FALSE
-database                          (No default value)
-default-character-set             auto
-delimiter                         ;
-enable-cleartext-plugin           FALSE
-vertical                          FALSE
-force                             FALSE
-named-commands                    FALSE
-ignore-spaces                     FALSE
-init-command                      (No default value)
-local-infile                      FALSE
-no-beep                           FALSE
-host                              ost
-html                              FALSE
-xml                               FALSE
-line-numbers                      TRUE
-unbuffered                        FALSE
-column-names                      TRUE
-sigint-ignore                     FALSE
-port                              3306
-prompt                            mysql> 
-quick                             FALSE
-raw                               FALSE
-reconnect                         FALSE
-socket                            /var/run/mysqld/mysqld.sock
-ssl                               FALSE
-ssl-ca                            (No default value)
-ssl-capath                        (No default value)
-ssl-cert                          (No default value)
-ssl-cipher                        (No default value)
-ssl-key                           (No default value)
-ssl-verify-server-cert            FALSE
-table                             FALSE
-user                              root
-safe-updates                      FALSE
-i-am-a-dummy                      FALSE
-connect-timeout                   0
-max-allowed-packet                16777216
-net-buffer-length                 16384
-select-limit                      1000
-max-join-size                     1000000
-secure-auth                       FALSE
-show-warnings                     FALSE
-plugin-dir                        (No default value)
-default-auth                      (No default value)
+--
+-- Veritabanı: `proje_takip`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `ayarlar`
+--
+
+CREATE TABLE IF NOT EXISTS `ayarlar` (
+  `ayar_id` int(11) NOT NULL AUTO_INCREMENT,
+  `site_baslik` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `site_hakkimizda` text COLLATE utf8_unicode_ci NOT NULL,
+  `site_iletisim_eposta` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `site_logo` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `site_anasayfa_logo` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`ayar_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+
+--
+-- Tablo döküm verisi `ayarlar`
+--
+
+INSERT INTO `ayarlar` (`ayar_id`, `site_baslik`, `site_hakkimizda`, `site_iletisim_eposta`, `site_logo`, `site_anasayfa_logo`) VALUES
+(1, 'Proje Takibim', 'Bu site Celal Bayar Üniversitesi - Kırkağaç Meslek Yüksekokulu öğrencileri Yusuf Kaya ve Tayfun Serin tarafından bitirme projesi olarak hazırlanmıştır.', 'info@projetakibim.com', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `dosyalar`
+--
+
+CREATE TABLE IF NOT EXISTS `dosyalar` (
+  `dosya_id` int(11) NOT NULL AUTO_INCREMENT,
+  `proje_id` int(11) NOT NULL,
+  `dosya_ad` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `dosya_uzantı` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `dosya_yol` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `dosya_link` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `dosya_boyut` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`dosya_id`),
+  KEY `proje_id` (`proje_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+
+--
+-- Tablo döküm verisi `dosyalar`
+--
+
+INSERT INTO `dosyalar` (`dosya_id`, `proje_id`, `dosya_ad`, `dosya_uzantı`, `dosya_yol`, `dosya_link`, `dosya_boyut`) VALUES
+(2, 67, '2017-05-13 21.28.15.zip', 'application/zip', '/var/www/html/proje/dosyalar/5 - Proje Takip Sistemi/2017-05-13 21.28.15.zip', 'http://localhost/proje/dosyalar//2017-05-13 21.28.15.zip', '90325');
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `kontrol`
+--
+
+CREATE TABLE IF NOT EXISTS `kontrol` (
+  `kontrol_id` int(11) NOT NULL AUTO_INCREMENT,
+  `kontrol_not` text COLLATE utf8_unicode_ci NOT NULL,
+  `proje_yuzde` smallint(6) NOT NULL,
+  `kontrol_tarih` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `proje_id` int(11) NOT NULL,
+  `kontrol_baslik` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`kontrol_id`),
+  KEY `proje_id` (`proje_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+
+--
+-- Tablo döküm verisi `kontrol`
+--
+
+INSERT INTO `kontrol` (`kontrol_id`, `kontrol_not`, `proje_yuzde`, `kontrol_tarih`, `proje_id`, `kontrol_baslik`) VALUES
+(1, 'Proje devam etsin.', 10, '2017-05-13 15:39:21', 66, 'Bu bir kontrol testi'),
+(2, 'test 2', 50, '2017-05-13 15:39:39', 66, 'test');
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `mesajlar`
+--
+
+CREATE TABLE IF NOT EXISTS `mesajlar` (
+  `mesaj_id` int(11) NOT NULL AUTO_INCREMENT,
+  `gonderen_id` int(11) NOT NULL,
+  `alici_id` int(11) NOT NULL,
+  `mesaj` text COLLATE utf8_unicode_ci NOT NULL,
+  `baslik` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `tarih` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `okuma` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`mesaj_id`),
+  KEY `gonderen_id` (`gonderen_id`,`alici_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `ogrenciler`
+--
+
+CREATE TABLE IF NOT EXISTS `ogrenciler` (
+  `ogrenci_id` int(11) NOT NULL AUTO_INCREMENT,
+  `proje_id` int(11) DEFAULT NULL,
+  `ogrenci_no` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `ogrenci_sifre` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `ogrenci_isim` varchar(80) COLLATE utf8_unicode_ci NOT NULL,
+  `ogrenci_eposta` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `ogrenci_kayit` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `ogrenci_giris` timestamp NULL DEFAULT NULL,
+  `resim` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`ogrenci_id`),
+  UNIQUE KEY `ogrenci_no` (`ogrenci_no`,`ogrenci_eposta`),
+  KEY `proje_id` (`proje_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
+
+--
+-- Tablo döküm verisi `ogrenciler`
+--
+
+INSERT INTO `ogrenciler` (`ogrenci_id`, `proje_id`, `ogrenci_no`, `ogrenci_sifre`, `ogrenci_isim`, `ogrenci_eposta`, `ogrenci_kayit`, `ogrenci_giris`, `resim`) VALUES
+(5, 67, '151809080', 'b45b69c3584350cf9a757654022e73df', 'Yusuf Kaya', 'ysf.ky_1903@hotmail.com', '2017-04-19 21:54:55', '2017-05-13 17:00:06', 'http://localhost/proje/frontend/avatar/1493780797.jpg'),
+(6, 67, '151809010', 'c336268b8ed95daaf5818f3c14c45c75', 'John Doe', 'pvpc11@hotmail.com', '2017-05-13 12:50:27', '2017-05-13 13:31:01', 'http://localhost/proje/frontend/avatar/user.png');
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `ogretmenler`
+--
+
+CREATE TABLE IF NOT EXISTS `ogretmenler` (
+  `ogretmen_id` int(11) NOT NULL AUTO_INCREMENT,
+  `ogretmen_eposta` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `ogretmen_kullaniciadi` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `ogretmen_ad` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `ogretmen_soyad` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `ogretmen_sifre` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `ogretmen_kayit` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `ogretmen_giris` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`ogretmen_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+
+--
+-- Tablo döküm verisi `ogretmenler`
+--
+
+INSERT INTO `ogretmenler` (`ogretmen_id`, `ogretmen_eposta`, `ogretmen_kullaniciadi`, `ogretmen_ad`, `ogretmen_soyad`, `ogretmen_sifre`, `ogretmen_kayit`, `ogretmen_giris`) VALUES
+(1, 'admin@admin', 'admin', 'Test', 'Test Soyisim', '21232f297a57a5a743894a0e4a801fc3', '0000-00-00 00:00:00', '2017-05-13 18:28:51'),
+(2, 'test@test.com', 'test12', 'test ad', 'test soyadı', 'test', '2017-05-07 22:47:48', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `olaylar`
+--
+
+CREATE TABLE IF NOT EXISTS `olaylar` (
+  `olay_id` int(11) NOT NULL AUTO_INCREMENT,
+  `proje_id` int(11) DEFAULT NULL,
+  `ogrenci_id` int(11) DEFAULT NULL,
+  `mesaj_id` int(11) DEFAULT NULL,
+  `dosya_id` int(11) DEFAULT NULL,
+  `olay` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `olay_tip` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `olay_tarih` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`olay_id`),
+  KEY `proje_id` (`proje_id`,`ogrenci_id`,`mesaj_id`,`dosya_id`),
+  KEY `proje_id_2` (`proje_id`),
+  KEY `ogrenci_id` (`ogrenci_id`),
+  KEY `mesaj_id` (`mesaj_id`),
+  KEY `dosya_id` (`dosya_id`),
+  KEY `proje_id_3` (`proje_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=108 ;
+
+--
+-- Tablo döküm verisi `olaylar`
+--
+
+INSERT INTO `olaylar` (`olay_id`, `proje_id`, `ogrenci_id`, `mesaj_id`, `dosya_id`, `olay`, `olay_tip`, `olay_tarih`) VALUES
+(94, 67, 5, NULL, NULL, 'Proje Ekibi Oluşturuldu', 'proje-ekip', '2017-05-13 15:43:33'),
+(95, 67, 5, NULL, NULL, 'Proje Eklendi', 'proje-eklendi', '2017-05-13 15:43:33'),
+(96, NULL, 5, NULL, NULL, 'Giriş Yapıldı', 'giriş', '2017-05-13 16:04:59'),
+(97, NULL, 5, NULL, NULL, 'Giriş Yapıldı', 'giriş', '2017-05-13 17:00:04'),
+(98, NULL, 5, NULL, NULL, 'Giriş Yapıldı', 'giriş', '2017-05-13 17:00:06'),
+(99, 67, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-13 18:21:53'),
+(101, 67, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-13 18:24:37'),
+(102, NULL, 5, NULL, NULL, 'Dosya Silindi', 'dosya-sil', '2017-05-13 18:24:44'),
+(103, 67, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-13 18:26:35'),
+(104, 67, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-13 18:26:52'),
+(105, 67, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-13 18:27:47'),
+(106, 67, 5, NULL, 2, 'Dosya Yüklendi', 'dosya-yukle', '2017-05-13 18:28:15'),
+(107, 67, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-13 18:28:20');
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `projeler`
+--
+
+CREATE TABLE IF NOT EXISTS `projeler` (
+  `proje_id` int(11) NOT NULL AUTO_INCREMENT,
+  `proje_no` int(11) DEFAULT NULL,
+  `proje_konu` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `proje_amac` text COLLATE utf8_unicode_ci NOT NULL,
+  `proje_tur` tinyint(4) NOT NULL,
+  `olusturan_id` int(11) DEFAULT NULL,
+  `proje_dosya` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `proje_uygunluk` tinyint(1) DEFAULT NULL,
+  `proje_olusturma` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `proje_bitirme` timestamp NULL DEFAULT NULL,
+  `proje_duzenleme` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`proje_id`),
+  UNIQUE KEY `proje_no` (`proje_no`),
+  KEY `olusturan_id` (`olusturan_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=68 ;
+
+--
+-- Tablo döküm verisi `projeler`
+--
+
+INSERT INTO `projeler` (`proje_id`, `proje_no`, `proje_konu`, `proje_amac`, `proje_tur`, `olusturan_id`, `proje_dosya`, `proje_uygunluk`, `proje_olusturma`, `proje_bitirme`, `proje_duzenleme`) VALUES
+(67, 1, 'Proje Takip Sistemi', 'Projeleri internet üzerinden takip etmek', 2, 5, '/var/www/html/proje/dosyalar/5 - Proje Takip Sistemi', 1, '2017-05-13 15:43:33', '2017-05-26 15:43:59', '2017-05-13 15:44:14');
+
+--
+-- Dökümü yapılmış tablolar için kısıtlamalar
+--
+
+--
+-- Tablo kısıtlamaları `mesajlar`
+--
+ALTER TABLE `mesajlar`
+  ADD CONSTRAINT `foreign_key_ogretmen_id_mesajlar_gonderen_id` FOREIGN KEY (`gonderen_id`) REFERENCES `ogretmenler` (`ogretmen_id`) ON DELETE CASCADE;
+
+--
+-- Tablo kısıtlamaları `ogrenciler`
+--
+ALTER TABLE `ogrenciler`
+  ADD CONSTRAINT `foreign_ogrenciler_proje_id_projeler_proje_id` FOREIGN KEY (`proje_id`) REFERENCES `projeler` (`proje_id`) ON DELETE SET NULL;
+
+--
+-- Tablo kısıtlamaları `olaylar`
+--
+ALTER TABLE `olaylar`
+  ADD CONSTRAINT `foreign_mesajlar_mesaj_id` FOREIGN KEY (`mesaj_id`) REFERENCES `mesajlar` (`mesaj_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `foreign_dosyalar_dosya_id` FOREIGN KEY (`dosya_id`) REFERENCES `dosyalar` (`dosya_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `foreign_ogrenciler_ogrenci_id` FOREIGN KEY (`ogrenci_id`) REFERENCES `ogrenciler` (`ogrenci_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `foreign_projeler_proje_id` FOREIGN KEY (`proje_id`) REFERENCES `projeler` (`proje_id`) ON DELETE CASCADE;
+
+--
+-- Tablo kısıtlamaları `projeler`
+--
+ALTER TABLE `projeler`
+  ADD CONSTRAINT `foreign_ogrenciler_ogrenci_id_projeler_olusturan_id` FOREIGN KEY (`olusturan_id`) REFERENCES `ogrenciler` (`ogrenci_id`) ON DELETE SET NULL;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

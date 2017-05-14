@@ -317,7 +317,7 @@ function olay($olay = array(),$proje_id = null , $ogrenci_id = null,$mesaj_id = 
     filter($proje_id);
     filter($mesaj_id);
     filter($ogrenci_id);
-    filter($mesaj_id);
+    filter($dosya_id);
     $ekle = $db->prepare("INSERT INTO olaylar SET
         proje_id = :proje,
         ogrenci_id = :ogrenci,
