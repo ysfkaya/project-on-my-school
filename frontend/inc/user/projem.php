@@ -20,7 +20,7 @@
                             <?php endif;?>
                         </div>
                     </div>
-                    <?php if($proje['olusturan_id'] == getSession('id')):?>
+                    <?php if($proje['olusturan_id'] == getSession('id') || empty($proje['olusturan_id'])):?>
                     <div class="form-group">
                         <label class="col-md-4 control-label">Çalışma Türü</label>
                         <div class="col-md-8">
@@ -37,7 +37,7 @@
                                 <select class="selectpicker form-control" multiple>
                                     <?php foreach($ogrenciler as $ogrenci):?>
                                           <?php if($ogrenci['ogrenci_id'] != getSession('id')): ?>
-                                          <option value="<?=$ogrenci['ogrenci_id']?>" <?=$ogrenci['proje_id'] == $proje['proje_id'] ? 'selected' : null ?>><?=$ogrenci['ogrenci_isim']?></option>
+                                          <option <?=$ogrenci['proje_id'] != null ? 'disabled' : null;?> value="<?=$ogrenci['ogrenci_id']?>" <?=$ogrenci['proje_id'] == $proje['proje_id'] ? 'selected' : null ?>><?=$ogrenci['ogrenci_isim']?></option>
                                           <?php endif;?>
                                     <?php endforeach;?> 
                                 </select>

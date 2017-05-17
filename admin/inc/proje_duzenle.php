@@ -2,9 +2,9 @@
 echo !defined("ADMIN") ? die("İzinsiz Giriş İsteği?") : null;
 
 $id = get('id') ? get('id') : go(url('projeler'));
-$query = $db->prepare("SELECT * FROM projeler INNER JOIN ogrenciler ON ogrenciler.ogrenci_id = projeler.olusturan_id WHERE projeler.proje_id = :id");
+$query = $db->prepare("SELECT * FROM projeler LEFT JOIN ogrenciler ON ogrenciler.ogrenci_id = projeler.olusturan_id WHERE projeler.proje_id = :id");
 $query->execute(array(
-    'id' => $id
+    'id' => (int)$id
 ));
 if ($query->rowCount() < 1) {
     warning('Proje bulunamadı');

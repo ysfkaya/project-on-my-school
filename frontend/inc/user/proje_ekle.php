@@ -25,7 +25,7 @@
                                 <select name="proje_ekip[]" class="selectpicker form-control" multiple>
                                     <?php foreach($ogrenciler as $ogrenci):?>
                                           <?php if($ogrenci['ogrenci_id'] != getSession('id')): ?>
-                                        <option <?=$ogrenci['proje_id'] != null ? 'disabled' : null;?> value="<?=$ogrenci['ogrenci_id']?>"><?=$ogrenci['ogrenci_isim']?></option>
+                                                <option <?=$ogrenci['proje_id'] != null ? 'disabled' : null;?> value="<?=$ogrenci['ogrenci_id']?>"><?=$ogrenci['ogrenci_isim']?></option>
                                           <?php endif;?>
                                     <?php endforeach;?> 
                                 </select>

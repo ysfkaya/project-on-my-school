@@ -283,8 +283,18 @@ function dosyaSil($id){
     ));
 
     $row = $query->fetch(PDO::FETCH_ASSOC);
-    if (is_dir($row['proje_dosya'])) {
-        rmdir($row['proje_dosya']);
+    $dir = $row['proje_dosya'];
+    if (is_dir($dir)) {
+        foreach (scandir($dir) as $item) {
+            if ($item == '.' || $item == '..') {
+                continue;
+            }
+
+            if (!unlink($dir . DIRECTORY_SEPARATOR . $item)) {
+                return false;
+            }
+        }
+        rmdir($dir);
     }
 }
 

@@ -399,7 +399,7 @@ $(document).ready(function(){
                     url: URL+'/ajax/projeden_cik.php',
                     type: 'POST',
                     dataType: 'json',
-                    data: {id: id},
+                    data: {id: id,proje_id:proje},
                     success : function(data) {
                         if(data.basarili){
                             swal({
