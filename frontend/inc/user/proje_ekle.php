@@ -21,11 +21,11 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label">Proje Ekibi</label>
                             <div class="col-md-8">
-                                <?php if(count($ogrenciler) > 1):?>
+                                <?php if(count($ogrenciler) > 1): // kayıtlı başka öğrenci varsa öğrencileri seçebilir.?>
                                 <select name="proje_ekip[]" class="selectpicker form-control" multiple>
                                     <?php foreach($ogrenciler as $ogrenci):?>
                                           <?php if($ogrenci['ogrenci_id'] != getSession('id')): ?>
-                                                <option <?=$ogrenci['proje_id'] != null ? 'disabled' : null;?> value="<?=$ogrenci['ogrenci_id']?>"><?=$ogrenci['ogrenci_isim']?></option>
+                                                <option <?=$ogrenci['proje_id'] != null ? 'disabled' : null;?> value="<?=$ogrenci['proje_id'] != null ? null : $ogrenci['ogrenci_id'];?>"><?=$ogrenci['ogrenci_isim']?></option>
                                           <?php endif;?>
                                     <?php endforeach;?> 
                                 </select>

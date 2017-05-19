@@ -1,11 +1,15 @@
 <?php 
+
+    
+    /* Gerekli sistem dosyalarını çağırdık.*/
     require '../system/database.php';
     require '../system/system.php';
     require '../system/frontend.php';
 
+    /* Gerekli güvenlik önlemlerini aldık.*/
     if (isPost() && isAjax()){
         $no = post('okul_no');
-        $sifre = md5(post('sifre'));
+        $sifre = md5(post('sifre')); // şifremizi md5 formatına dönüştürdük.
         $array = array();
         $query = $db->prepare("SELECT * FROM ogrenciler WHERE ogrenci_no = :no AND ogrenci_sifre =:sifre");
         $query->execute(array(
@@ -14,7 +18,7 @@
         ));
         if ($query->rowCount() > 0) {
             $row = $query->fetch(PDO::FETCH_ASSOC);
-            $session = array(
+            $session = array( // oturum açmak için gerekli tanımları aldık.
                 'id' => $row['ogrenci_id'],
                 'ogrenci_no' => $row['ogrenci_no'],
                 'ogrenci_isim' => $row['ogrenci_isim'],
@@ -23,7 +27,7 @@
                 'login' => true,
                 'user' => 'ogrenci'
             );
-            create_session($session);
+            create_session($session); // oturumumuzu oluşturduk.
             $id = $row['ogrenci_id'];
             $date = date('Y-m-d H:i:s');
             $update = $db->prepare("UPDATE ogrenciler SET ogrenci_giris = :tarih WHERE ogrenci_id = :id");

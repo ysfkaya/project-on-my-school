@@ -1,40 +1,49 @@
 <?php
 
+
+/* Gerekli sistem dosyalarını çağırdık.*/
 require '../system/database.php';
 require '../system/system.php';
 require '../packages/PHPMailler/class.phpmailer.php';
 require '../packages/PHPMailler/PHPMailerAutoload.php';
 
+/**
+ * Kayıt ol işlemini ajax ile gerçekleştirdiğimiz için burda güvenlik önlemini aldık.
+ * Sayfa ya post isteği ve ajax isteği geldi ise işlemler başlatılacak.
+ * Eğer kötü bir istek gelirse işlemi durdurup ekrana "Geçersiz İstek" mesajı basılacaktır.
+ */
 if (isPost() && isAjax()){
-    $array = array();
-    $ad = post('ad');
-    $no = post('no');
-    $eposta = post('eposta');
+    $array = array(); // ajax verilerini json formatında döndürmek için ilk önce bir dizi tanımlıyoruz.
+    $ad = post('ad'); // post dan gelen 'ad' elemanı
+    $no = post('no'); // post dan gelen 'no' elemanı
+    $eposta = post('eposta'); // post dan gelen 'eposta' elemanı
 
-    if (post('kayityap') == true){
-            $kayit_array = array();
-            $query = $db->prepare("INSERT INTO ogrenciler SET
-                  ogrenci_no =:numara,
-                  ogrenci_isim = :ad,
-                  ogrenci_eposta = :eposta,
-                  ogrenci_sifre = :sifre,
-                  ogrenci_kayit = :kayit
-              ");
-            $query->execute(array(
-                'numara' => post('kayit')['numara'],
-                'ad' => post('kayit')['ad'],
-                'eposta' => post('kayit')['eposta'],
-                'sifre' => post('kayit')['sifre'],
-                'kayit' => post('kayit')['kayit']
-            ));
-            if ($query->rowCount() > 0) {
-                olay(array("Kayıt Olundu","kayıt"),null,$db->lastInsertId());
-                $kayit_array['basarili'] = 'Kayıt başarıyla oluşturuldu. Giriş yapmak için lütfen eposta adresinizdeki şifreyle giriniz.';
-            }else{
-                $kayit_array['hata'] = ':'.$db->errorInfo();
-            }
-            echo json_encode($kayit_array);
-    }else{
+    if (post('kayityap') == true){ // 'kayityap' isteği varsa veritabanına kaydetme işlemleri gerçekleşir.
+        $kayit_array = array();
+        $query = $db->prepare("INSERT INTO ogrenciler SET
+              ogrenci_no =:numara,
+              ogrenci_isim = :ad,
+              ogrenci_eposta = :eposta,
+              ogrenci_sifre = :sifre,
+              ogrenci_kayit = :kayit
+          ");
+        $query->execute(array(
+            'numara' => post('kayit')['numara'],
+            'ad' => post('kayit')['ad'],
+            'eposta' => post('kayit')['eposta'],
+            'sifre' => post('kayit')['sifre'],
+            'kayit' => post('kayit')['kayit']
+        ));
+        if ($query->rowCount() > 0) {
+            olay(array("Kayıt Olundu","kayıt"),null,$db->lastInsertId());
+            $kayit_array['basarili'] = 'Kayıt başarıyla oluşturuldu. Giriş yapmak için lütfen eposta adresinizdeki şifreyle giriniz.';
+        }else{
+            $kayit_array['hata'] = ':'.$db->errorInfo()[2];
+        }
+        echo json_encode($kayit_array);
+
+    }else{ // 'kayityap' isteği yoksa veritabanında kontroller sağlanır ve sonuca göre mail gönderilir.
+
         if (!is_numeric($no)) {
             $array['hata'] = 'Lütfen okul numaranız sadece sayısal değerleri içersin.';
         }else{
@@ -72,9 +81,7 @@ if (isPost() && isAjax()){
                 }
             }
         }
-
         echo json_encode($array);
-
     }
 
 }else{

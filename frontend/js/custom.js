@@ -251,20 +251,18 @@ $(document).ready(function(){
 
     // kayit form
     $("#kayit").on('submit',function (e) {
-        e.preventDefault();
-
-        $("#loading").removeClass('hidden');
-
+        e.preventDefault(); // submit işlemini geçersiz kılıyoruz.
+        $("#loading").removeClass('hidden'); // animasyon gif div'ini görünür yapıyoruz.
+        /* Değerleri alıyoruz. */
         var $no = $("#okul_no");
         var $ad = $("#adiniz").val();
         var $eposta = $("#eposta").val();
-
-        $.ajax({
-            type:'POST',
-            url:URL+'/ajax/kayit.php',
-            data:{ad:$ad,no:$no.val(),eposta:$eposta},
-            dataType:'json',
-            success: function (data) {
+        $.ajax({ // ilk ajax isteğimiz mail gönderme kısmıdır.
+            type:'POST', // post işlemine tabi tutuyoruz.
+            url:URL+'/ajax/kayit.php', // ajax dosyamızı belirliyoruz.
+            data:{ad:$ad,no:$no.val(),eposta:$eposta}, // gönderilecek verilerimizi belirliyoruz
+            dataType:'json', // veri türünü belirliyoruz. 
+            success: function (data) { // işlem başarılı ise çalıcak kısım.
                 if(data.var){
                     $("#loading").addClass('hidden');
                     swal("Uyarı !",data.var,"warning");
@@ -287,7 +285,7 @@ $(document).ready(function(){
                                 return false;
                             }
                             if (data.kod == inputValue){
-                                $.ajax({
+                                $.ajax({ // bu ajax isteğimizde mail adresinden girilen kod doğru ise veritabanına kaydetmek içindir.
                                     type:'POST',
                                     url:URL+'/ajax/kayit.php',
                                     data:{kayit:data.kayit,kayityap:true},
@@ -322,13 +320,13 @@ $(document).ready(function(){
 
     // giris form
     $("#giris").on('submit',function(e) {
-        e.preventDefault();
+        e.preventDefault(); // submit işlemini geçersiz kılıyoruz.
         
-
+        //değerleri alıyoruz.
         var $no = $("#g_okul_no").val();
         var $sifre = $("#g_sifre").val();
 
-        $.ajax({
+        $.ajax({ // ajax isteğini başlatıyoruz.
             type:'POST',
             url:URL+'/ajax/giris.php',
             data:{okul_no:$no,sifre:$sifre},

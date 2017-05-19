@@ -90,6 +90,7 @@ function proje(){
             'proje_tur' => post('proje_tur')
         );
 
+
         $guncelle = $db->prepare("UPDATE projeler SET
             proje_konu = :proje_konu,
             proje_amac = :proje_amac,
@@ -121,7 +122,16 @@ function proje(){
         }
         if (post('proje_ekip')) {
             $ekip = post('proje_ekip');
+
+            $bos = $db->prepare("UPDATE ogrenciler SET
+                proje_id = :proje
+                WHERE proje_id = :id");
+            $bos->execute(array(
+                'proje' => null,
+                'id' => post('proje_id')
+            ));
             foreach ($ekip as $key => $value) {
+
                 $guncelle4 = $db->prepare("UPDATE ogrenciler SET
                     proje_id = :proje
                     WHERE ogrenci_id = :id");
@@ -188,10 +198,11 @@ function proje_ekle(){
             $ekip[] = getSession('id');
             foreach ($ekip as $key => $value){
                 $guncelle = $db->prepare("UPDATE ogrenciler SET
-                    proje_id = :id"
-                    );
+                    proje_id = :id
+                    WHERE ogrenci_id = :ogrenci_id");
                 $s1 = $guncelle->execute(array(
-                    'id' => $proje_id
+                    'id' => $proje_id,
+                    'ogrenci_id' => $value
                     ));
                 if (!$s1) {
                     $s = false;

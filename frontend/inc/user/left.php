@@ -1,4 +1,6 @@
-<?php echo !defined("GUVENLIK") ? die("Geçersiz istek") : null;?>
+
+
+<?php echo !defined("GUVENLIK") ? die("Geçersiz istek") : null; // kullanıcı girişi olmadan sayfa ulaşmaması için güvenlik önlemi.?>
 
 <div class="panel">
     <div class="user-heading">

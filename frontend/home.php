@@ -65,19 +65,30 @@
                     <div class="panel">
                         <div class="content">
                             <?php 
-                            // javascript dosyalarında değişkenlere ulaşmak için burada kullanılmıştır.
-                            $get = proje();
+                            /**
+                             * Burdaki değişkenleri global olarak tüm sayfalarda kullanmak için çektik.
+                             */
+                            $get = proje(); // proje bilgilerini çektik
 
-                            $proje = $get[0]->fetch(PDO::FETCH_ASSOC);
-                            $projeCount = $get[0]->rowCount();
+                            $proje = $get[0]->fetch(PDO::FETCH_ASSOC); // projeleri verilerini bir dizi haline getirdik.
+                            $projeCount = $get[0]->rowCount(); // proje sayısını çektik. 
                             $id = $proje['proje_id'];
+
+                            // proje nin kontrol sayısı.
                             if ($id) {
                                 $kontrols = $db->query("SELECT * FROM kontrol WHERE proje_id = $id");                                
                             }else{
                                 $kontrols = 0;
                             }
 
-                            $ogrenciler = $get[1]->fetchAll(PDO::FETCH_ASSOC);
+                            $ogrenciler = $get[1]->fetchAll(PDO::FETCH_ASSOC); // proje ekibi oluştururken kullanılacak öğrenciler değişkeni.
+
+                            /**
+                             * frontend.php kısmında oluşturulan içerik fonksiyonunu dahil ettik.
+                             * Bu fonksiyon sayesinde tıkladığımız linke göre bir 'do' get isteği gönderiliyor
+                             * ve bu fonksiyonda get isteğini alıp işleme tabi tutuyoruz ona göre de gerekli klasörü
+                             * çağırıyor ve sistemin düzgün çalışmasını sağlıyor.
+                             */
                             icerikler();
                             ?>
                         </div>

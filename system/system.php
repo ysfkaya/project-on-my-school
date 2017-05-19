@@ -1,6 +1,10 @@
 <?php
 
-
+/**
+ * POST isteklerinde xss ve ajax işlemlerinde güvenlik önlemleri için oluşturulmuştur.
+ * @param  $par POST edilen değeri alır
+ * @return void
+ */
 function post($par){
     if (is_array($_POST[$par])){
         return array_map(function ($item){
@@ -11,8 +15,11 @@ function post($par){
     }
 
 }
-
-
+/**
+ * GET isteklerinde xss ve ajax işlemlerinde güvenlik önlemleri için oluşturulmuştur.
+ * @param  $par GET edilen değeri alır
+ * @return void
+ */
 function get($par){
     if (is_array($_GET[$par])){
         return array_map(function ($item){
@@ -21,18 +28,37 @@ function get($par){
     }else{
         return htmlspecialchars(addslashes(trim($_GET[$par])),ENT_COMPAT,"UTF-8",false);
     }
+
 }
 
-function ss($par){
-    return stripslashes($par);
-}
 
-function create_session($param = array()){
+/**
+ * Session verilerini toplu bir şekilde oluşturur.
+ * @param  array $param oluşturulacak sessionlar.
+ * @return void
+ */
+function create_session(array $param){
     foreach ($param as $key => $value){
         $_SESSION[$key] = $value;
     }
-}
 
+}
+/**
+ * Post ve get işlemleri yaparken verileri veritabanına xss açığını önlemek için '\' ters slash ile ekliyoruz
+ * bu verileri geri çekerken slashlar veya etiketler (<p>,<b>,<i> vs..) kullanıcıya gözükebiliyor. 
+ * Bu yüzden de bu fonksiyonda slashları kaldırılıyor.
+ * @param  $par
+ * @return void
+ */
+function ss($par)
+{
+    return stripslashes($par);
+}
+/**
+ * Session verilerini alır.
+ * @param  $param girilen elemanı çeker.
+ * @return void
+ */
 function getSession($param){
     if (isset($_SESSION[$param])){
         return $_SESSION[$param];
@@ -41,88 +67,121 @@ function getSession($param){
         return $_SESSION;
     }
     return null;
+
 }
 
+/**
+ * Session değerinin olup olmadığını kontrol eder.
+ * @param  $param
+ * @return boolean       
+ */
 function isSession($param){
     if (isset($_SESSION[$param]) && $_SESSION[$param] != ''){
         return true;
     }
     return false;
-}
 
+}
+/**
+ * Ajax isteğini kontrol eder.
+ * @return boolean
+ */
 function isAjax(){
         if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH'])){
             return true;
         }
 
         return false;
+
 }
 
-
-function create_cookie($param,$time = 3){
-    foreach ($param as $key => $value) {
-        setcookie($key,$value,time()+($time));
-    }
-}
-
-function getCookie($cookie){
-    if (isset($_COOKIE[$cookie])  ) {
-        return $_COOKIE[$cookie];
-    }
-    return false;
-}
-
-
-function go($url,$time = null){
+/**
+ * Yönlendirme işlemlerinde kullanılır.
+ * @param  string   $url  Gidilecek url
+ * @param  int|null $time Kaç saniye sonra yönlendireleceğini belirler.
+ * @return void        
+ */
+function go($url,int $time = null){
     if ($time){
         return header("Refresh:{$time};url={$url}");
     }else{
         return header("Location:{$url}");
     }
+
 }
 
-
+/**
+ * Uyarı mesajı
+ * @param  $message Kullanıcaya gösterilecek mesaj
+ * @param  $margin  Style ayarı.
+ */
 function warning($message,$margin='20px'){
     $html = '<div class="alert alert-warning" style="margin-bottom:'.$margin.'" role="alert">';
     $html .=  '<strong>Uyarı !</strong> '.$message;
     $html .= '</div>';
 
     echo $html;
+
 }
 
+/**
+ * Bilgi mesajı
+ * @param  $message Kullanıcaya gösterilecek mesaj
+ * @param  $margin  Style ayarı.
+ */
 function info($message,$margin='20px'){
     $html = '<div class="alert alert-info" style="margin-bottom:'.$margin.'" role="alert">';
     $html .=  '<strong>Bilgi !</strong> '.$message;
     $html .= '</div>';
 
     echo $html;
+
 }
 
+/**
+ * Başarı mesajı
+ * @param  $message Kullanıcaya gösterilecek mesaj
+ * @param  $margin  Style ayarı.
+ */
 function success($message){
     $html = '<div class="alert alert-success" role="alert">';
     $html .=  '<strong>Başarılı !</strong> '.$message;
     $html .= '</div>';
 
     echo $html;
+
 }
 
+/**
+ * Hata mesajı
+ * @param  $message Kullanıcaya gösterilecek mesaj
+ * @param  $margin  Style ayarı
+ */
 function error($message){
     $html = '<div class="alert alert-danger" role="alert">';
     $html .=  '<strong>Hata !</strong> '.$message;
     $html .= '</div>';
 
     echo $html;
+
 }
 
-
+/**
+ * Kullanıcı girişini kontrol eder
+ * @return boolean
+ */
 function isLogin(){
     if (isSession('login')){
         return true;
     }
     return false;
+
 }
 
-
+/**
+ * Post isteğini kontrol eder.
+ * @return boolean
+ */
 function isPost(){
     if ($_POST){
         return true;
@@ -132,22 +191,37 @@ function isPost(){
 
 }
 
+/**
+ * Öğretmen girişini kontrol eder.
+ * @return boolean
+ */
 function isAdmin(){
     if (getSession('user') == 'admin'){
         return true;
     }
     return false;
+
 }
 
-function isUSer()
-{
+/**
+ * Öğrenci girişin kontrol eder.
+ * @return boolean
+ */
+function isUSer(){
     if (getSession('user') == 'ogrenci') {
         return true;
     }
 
     return false;
+
 }
 
+/**
+ * Tarih gösterme fonksiyonu. (26 May 2017)
+ * @param  $date 
+ * @param  boolean $saat
+ * @return void       
+ */
 function myDate($date,$saat = false){
     $time = explode(' ',$date);
     $left = explode('-',$time[0]);
@@ -217,11 +291,14 @@ function myDate($date,$saat = false){
     }
     return $fulltime;
 
-
 }
 
-function dosya($param)
-{
+/**
+ * $_FILES değişkeni ile aynı işlevi görür. Pratikleştirmek için tanımlanmıştır.
+ * @param  [type] $param
+ * @return boolean|array       
+ */
+function dosya($param){
     if (isset($_FILES[$param]) && !empty($_FILES[$param])) {
         $array = array();
         $array['adı'] = $_FILES[$param]['name'];
@@ -233,10 +310,18 @@ function dosya($param)
         return $array;
     }
     return false;
+
 }
 
-function dosyaYukle($dizin,$dosya,$buraya,$name = null)
-{
+/**
+ * Dosya yükleme işlemi.
+ * @param  $dizin  Kaydedilecek yer.
+ * @param  $dosya  Post edilen dosya.
+ * @param  $buraya Kaydedilen yerin url adresi.
+ * @param  $name   Kaydedilecek dosyanın ismi. Boş ise şuanki zaman varsayılarak bir ad oluşturulur.
+ * @return boolean|string        
+ */
+function dosyaYukle($dizin,$dosya,$buraya,$name = null){
 
     if (!empty($dosya) && !empty($dizin)){
         $tam_yol = $dosya['tam_yol'];
@@ -262,13 +347,18 @@ function dosyaYukle($dizin,$dosya,$buraya,$name = null)
 
 }
 
-function mailGonder($eposta,
-                    $ad,
-                    $sifre = null,
-                    $kod,
-                    $sifreGonder = false,
-                    $baslik = 'Proje Takibim Mail Doğrulama Kodu ve Şifre')
-{
+
+/**
+ * Mail gönderme işlemi
+ * @param  string  $eposta      Gönderilecek e-posta adresi
+ * @param  string  $ad          Gönderilecek kişinin adı
+ * @param  string  $sifre       Kayıt olan kişinin şifresi için tanımlanmıştır. 
+ * @param  string  $kod         Rastegele oluşturulmuş kod.
+ * @param  boolean $sifreGonder False ise şifre göndermez. True ise şifre gönderir.
+ * @param  string  $baslik      Mail başlığı
+ * @return boolean               
+ */
+function mailGonder($eposta,$ad,$sifre = null,$kod,$sifreGonder = false,$baslik = 'Proje Takibim Mail Doğrulama Kodu ve Şifre'){
     $mail = new PHPMailer();
     $mail->isSMTP();
     $mail->SMTPAuth = true;
@@ -309,8 +399,18 @@ function mailGonder($eposta,
     $mail->msgHTML($content);
     
     return $mail->send() ? true : $mail->ErrorInfo;
+
 }
 
+/**
+ * Veritabanındaki olaylar tablosuna veri girişi yapar.
+ * @param  array  $olay       Yapılan olaylar. örn: ["Giriş Yapıldı","giriş-yap"]
+ * @param  [type] $proje_id   Proje id
+ * @param  [type] $ogrenci_id Öğrenci id
+ * @param  [type] $mesaj_id   Mesaj id
+ * @param  [type] $dosya_id   Dosya id
+ * @return void
+ */
 function olay($olay = array(),$proje_id = null , $ogrenci_id = null,$mesaj_id = null,$dosya_id = null){
     global $db;
     $tarih = date("Y-m-d H:i:s");
@@ -336,9 +436,14 @@ function olay($olay = array(),$proje_id = null , $ogrenci_id = null,$mesaj_id = 
         'tip' => $olay[1],
         'tarih' => $tarih
         ));
+
 }
 
-
+/**
+ * String olan değişkeni integer değişkene dönüştürur.  
+ * @param  &$input
+ * @return void
+ */
 function filter (&$input) {
     if (!is_int($input) && !is_null($input)){
         settype($input,'int');
