@@ -81,7 +81,7 @@ function icerikler(){
 
 function proje(){
     global $db;
-    if (isPost() && post('proje') == true) {
+    if (isPost() && post('proje') == true) { // post isteği varsa güncelleme yapacak.
         
         $array = array(
             'proje_id' => post('proje_id'),
@@ -163,19 +163,18 @@ function proje(){
 function proje_ekle(){
     global $db;
     global $ogrenci;
-    if ($ogrenci['proje_id'] != null) {
+    if ($ogrenci['proje_id'] != null) { // öğrencinin projesi varsa proje ekleme sayfasını göremeyecek.
         go(url('projem'));
     }
-    if (isPost() && post('proje_ekle') == true) {
+    if (isPost() && post('proje_ekle') == true) { // post isteği kontrolü ve post edilen eleman proje ekleme isteği olup olmadığını kontrol ediyoruz.
         $tur = post('proje_tur');
-        $ekip = post('proje_ekip') && !empty(post('proje_ekip')) ? post('proje_ekip') : null;
+        $ekip = post('proje_ekip') && !empty(post('proje_ekip')) ? post('proje_ekip') : null; // proje ekip olup olmadığının kontrolünü sağlıyoruz.
         $konu = post('proje_konu');
         $amac = post('proje_amac');
         $id = getSession('id');
         $s = true;
         $dosya = $id.' - '.$konu;
-        $dosya = PROJE_DOSYA.$dosya;
-
+        $dosya = PROJE_DOSYA.$dosya; // proje dosyasının adı ve yolu belirleniyor.
 
         $ekle = $db->prepare("INSERT INTO projeler SET
                 proje_tur = :tur,
@@ -194,7 +193,7 @@ function proje_ekle(){
 
         $proje_id = $db->lastInsertId();
 
-        if ($ekip != null) {
+        if ($ekip != null) { // proje ekibi boş değil ise bir proje ekibi oluşturuyoruz.
             $ekip[] = getSession('id');
             foreach ($ekip as $key => $value){
                 $guncelle = $db->prepare("UPDATE ogrenciler SET
@@ -209,7 +208,7 @@ function proje_ekle(){
                 }
             }
             olay(array("Proje Ekibi Oluşturuldu","proje-ekip"),$proje_id,getSession('id'));
-        }else{
+        }else{ // proje ekibi yok ise projeyi oluşturan öğrenciyi proje_id sini atıyoruz ki projesi olduğunu bilelim.
             $guncelle = $db->prepare("UPDATE ogrenciler SET
                     proje_id = :id
                     WHERE ogrenci_id = :ogrenci");
