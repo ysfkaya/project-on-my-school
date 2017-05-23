@@ -68,6 +68,7 @@ $kontrol = $query->fetch(PDO::FETCH_ASSOC);
                                 <span class="input-group-addon"  style="background: transparent !important">
                                     <i class="fa fa-percent"></i>
                                 </span>
+                                <!-- Girilen değerin sayısal olması ve 100 ün üzerinde olmaması için ayarlanan input -->
                                 <input value="<?=$kontrol['proje_yuzde']?>" style="background: transparent !important" type="number" name="yuzde" min="1" maxlength="3" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1'); javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);javascript: if (this.value > 100) this.value = 100;" class="form-control" required>
                             </div>
                         </div>

@@ -1,6 +1,10 @@
 <?php
 echo !defined("ADMIN") ? die("İzinsiz Giriş İsteği?") : null;
 
+/**
+ * Verileri çekmek için yaptığımız sorugular.
+ */
+
 $id = get('id') ? get('id') : go(url('projeler'));
 $query = $db->prepare("SELECT * FROM projeler INNER JOIN ogrenciler ON ogrenciler.ogrenci_id = projeler.olusturan_id WHERE projeler.proje_id = :id");
 $query->execute(array(
@@ -67,7 +71,7 @@ $olaylar = $olaylar->fetchAll(PDO::FETCH_ASSOC);
                                         <dt class="proje_ekip">Proje Ekibi:</dt>
                                         <dd class="proje_ekip">
                                         <?php foreach($ogrenciler as $ogrenci):?>
-                                            <a href=""><img alt="image" class="img-circle" src="<?=$ogrenci['resim'] != null ? $ogrenci['resim'] : URL.'/frontend/avatar/user.png'?>"></a>
+                                            <a href=""><img class="img-circle" title="<?=$ogrenci['ogrenci_isim']?>" src="<?=$ogrenci['resim'] != null ? $ogrenci['resim'] : URL.'/frontend/avatar/user.png'?>"></a>
                                         <?php endforeach;?>
                                         </dd>
                                     </dl>

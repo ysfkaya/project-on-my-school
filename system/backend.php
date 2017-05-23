@@ -2,7 +2,11 @@
 
 require 'database.php';
 
-
+/**
+ * Mevcut url adresimi alıyoruz.
+ * @param  $url 
+ * @return stringZ 
+ */
 function url($url = null){
     if (!empty($url)){
         return BACKEND_URL.$url;
@@ -10,6 +14,11 @@ function url($url = null){
     return BACKEND_URL;
 }
 
+/**
+ * Proje id sine ait veritabanından dosya bilgilerini çeker.
+ * @param  $proje_id 
+ * @return array           
+ */
 function file_list($proje_id){
     global $db;
 
@@ -17,6 +26,12 @@ function file_list($proje_id){
 
 }
 
+/**
+ * Proje dosyalarını indirmek için çekilen dosyalar.
+ * Girilen proje id sine ait dosya varsa işlem gerçekleşir.
+ * @param  [type] $proje_id [description]
+ * @return [type]           [description]
+ */
 function dosya_isle($proje_id){
     global $db;
 
@@ -32,7 +47,12 @@ function dosya_isle($proje_id){
     return;
 }
 
-
+/**
+ * Veritabanına eklenen olayları düzenli bir şekilde çekmek için oluşturuldu.
+ * @param  $tip  olay türü
+ * @param  $olay gerçekleştiren kişi
+ * @return string       
+ */
 function olay_girdi($tip,$olay){
     global $db;
     switch ($tip) {

@@ -2,15 +2,16 @@
 
 
 /*
+ * Yetkisiz girişi önlemek için bir sabit tanımladık.
+ */
+define('GUVENLIK',true);
+
+/*
  * Sistem ve anasayfa dosyalarını çağırdık.
  */
 require_once 'system/system.php';
 require_once 'system/frontend.php';
 
-/*
- * Yetkisiz girişi önlemek için bir sabit tanımladık.
- */
-define('GUVENLIK',true);
 /*
  * isLogin -> Bu fonksiyon kullanıcı girişi olup olmadığını kontrol eder.
  * isUser  -> Bu fonksiyon giriş yapan kullanıcının öğrenci olup olmadığını kontrol eder.
@@ -28,4 +29,7 @@ if (isLogin() && isUser()){
     require 'frontend/index.php';
 }
 
+global $db;
+ob_end_flush();
+$db = null;
 

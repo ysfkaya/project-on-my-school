@@ -22,7 +22,7 @@ $ogrenciler = $sorgu->fetchAll(PDO::FETCH_ASSOC);
     <div class="col-md-12">
       <div class="panel panel-default">
         <div class="panel-heading">
-            <h3>Proje Detayları</h3>
+            <h3>Proje Düzenle - Onayla</h3>
         </div>
         <div class="panel-body">
         <div class="container">
@@ -75,7 +75,7 @@ $ogrenciler = $sorgu->fetchAll(PDO::FETCH_ASSOC);
                     <div class="form-group">
                         <label class="control-label col-md-4">Proje Numarası</label>
                         <div class="col-md-6">
-                            <input type="number" min="1" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control" placeholder="<?=$proje_no == null ? 'Henüz Belirtilmemiş' : null?>" name="proje_no" value="<?=$proje_no?>">
+                            <input type="number" required min="1" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1');" class="form-control" placeholder="<?=$proje_no == null ? 'Henüz Belirtilmemiş' : null?>" name="proje_no" value="<?=$proje_no?>">
                         </div>
                     </div>
                     <div class="form-group">

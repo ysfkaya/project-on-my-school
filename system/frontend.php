@@ -2,12 +2,20 @@
 
 require 'database.php';
 
+/**
+ * Bu fonksiyon bizim kullanmış olduğumuz css ve javascript dosyalarının url adresi ile birlikte çekmemizi sağlıyor.
+ * @param  $path Dosya yolu
+ * @return url ile birlikte dosya yolumuzu geri gönderiyoruz.
+ */
+function asset($path){
 
-function asset($path)
-{
     return URL.'/frontend/'.$path;
 }
-
+/**
+ * Mevcut url adresimi alıyoruz.
+ * @param  $url 
+ * @return stringZ 
+ */
 function url($url = null){
 	if (empty($url)) {
 		return URL;
@@ -15,14 +23,24 @@ function url($url = null){
 	return URL.'/'.'?do='.$url;
 }
 
-
+/**
+ * Frontend dosyasının gerçek yolunu alıyoruz
+ * Bir parametre girilirse klasörün içindeki "user" dizinine giriyor ve ordaki değeri '.php' uzantısı ile birlikte alıyoruz. 
+ * @param  $path 
+ * @return void       
+ */
 function frontend_path($path = null){
     if (empty($path)){
         return dir.'frontend/';
     }
     return dir.'frontend/inc/user/'.$path.'.php';
 }
-
+/**
+ * Öğrenci paneli için ana fonksiyonumuz.
+ * Öğrenci tıkladığı link göre sayfaya ilgili dosya yüklenir.
+ * Bu sayede home.php kısmında bu fonksiyonu kullanmamız yeterli oluyor.
+ * @return void
+ */
 function icerikler(){
     global $db;
     global $ogrenci;
@@ -78,7 +96,10 @@ function icerikler(){
             break;
     }
 }
-
+/**
+ * Proje görüntüleme ve düzenleme fonksiyonu
+ * @return void
+ */
 function proje(){
     global $db;
     if (isPost() && post('proje') == true) { // post isteği varsa güncelleme yapacak.
@@ -160,6 +181,10 @@ function proje(){
     return array($proje,$ogrenciler);
 }
 
+/**
+ * Proje ekleme fonksiyonu
+ * @return void
+ */
 function proje_ekle(){
     global $db;
     global $ogrenci;
@@ -236,6 +261,11 @@ function proje_ekle(){
     return $ogrenciler;
 }
 
+/**
+ * Profil ayarları için oluşturulan fonksiyon.
+ * Bu kısımda profil ayarlarını güncelleme işlemleri gerçekleşir.
+ * @return void
+ */
 function ayarlar(){
     global $db;
     global $ogrenci;
@@ -284,7 +314,11 @@ function ayarlar(){
     }
 }
 
-
+/**
+ * Girilen proje id ye göre dosya yı siler.
+ * @param  $id 
+ * @return void     
+ */
 function dosyaSil($id){
     global $db;
     $query = $db->prepare("SELECT * FROM projeler WHERE proje_id = :id");
@@ -299,7 +333,7 @@ function dosyaSil($id){
             if ($item == '.' || $item == '..') {
                 continue;
             }
-
+            
             if (!unlink($dir . DIRECTORY_SEPARATOR . $item)) {
                 return false;
             }
@@ -308,6 +342,11 @@ function dosyaSil($id){
     }
 }
 
+/**
+ * Yeni mesajları görüntülüyor.
+ * @param  boolean $type değer true ise mesaj sayısını gösteriyor.
+ * @return void        
+ */
 function yeni_mesajlar($type = false){
     global $db;
     $id = getSession('id');
@@ -319,6 +358,12 @@ function yeni_mesajlar($type = false){
     return $query;
     
 }
+
+/**
+ * Tüm mesajları gösteriyor
+ * @param  boolean $type değer true ise mesaj sayısını gösteriyor.
+ * @return void
+ */
 function mesajlar($type = false){
     global $db;
     $id = getSession('id');
@@ -331,6 +376,12 @@ function mesajlar($type = false){
     
 }
 
+/**
+ * İlgili id ye sahip proje dosyalarını array olarak geri gönderir.
+ * @param  integer $id  
+ * @param  boolean $type değer true ise proje dosyasının veritabanı verisini gönderir. 
+ * @return array
+ */
 function dosya_listele($id,$type = false){
     global $db;
     $liste = array();

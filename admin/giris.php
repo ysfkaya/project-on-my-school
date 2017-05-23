@@ -112,4 +112,9 @@
 <script src="js/bootstrap.min.js"></script>
 </body>
 </html>
+<?php 
+    global $db;
+    ob_end_flush();
+    $db = null;
+?>
 

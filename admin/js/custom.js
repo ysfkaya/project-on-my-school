@@ -9,29 +9,29 @@ $(document).ready(function () {
     }
 
 
-       // file input
-        var _resim1 = $("#resim1").attr('data-img');
-        $("#resim1").fileinput({
-            language : "tr",
-            overwriteInitial: true,
-            maxFileSize: 2048,
-            showClose: false,
-            showCaption: false,
-            defaultPreviewContent: '<img src="'+_resim1+'" alt="Resim" style="width:160px">',
-            layoutTemplates: {main2: '{preview} {browse}'},
-            allowedFileExtensions: ["jpg", "png", "gif"]
-        });
-        var _resim2 = $("#resim2").attr('data-img');
-        $("#resim2").fileinput({
-            language : "tr",
-            overwriteInitial: true,
-            maxFileSize: 2048,
-            showClose: false,
-            showCaption: false,
-            defaultPreviewContent: '<img src="'+_resim2+'" alt="Resim" style="width:160px">',
-            layoutTemplates: {main2: '{preview} {browse}'},
-            allowedFileExtensions: ["jpg", "png", "gif"]
-        });  
+   // file input
+    var _resim1 = $("#resim1").attr('data-img');
+    $("#resim1").fileinput({
+        language : "tr",
+        overwriteInitial: true,
+        maxFileSize: 2048,
+        showClose: false,
+        showCaption: false,
+        defaultPreviewContent: '<img src="'+_resim1+'" alt="Resim" style="width:160px">',
+        layoutTemplates: {main2: '{preview} {browse}'},
+        allowedFileExtensions: ["jpg", "png", "gif"]
+    });
+    var _resim2 = $("#resim2").attr('data-img');
+    $("#resim2").fileinput({
+        language : "tr",
+        overwriteInitial: true,
+        maxFileSize: 2048,
+        showClose: false,
+        showCaption: false,
+        defaultPreviewContent: '<img src="'+_resim2+'" alt="Resim" style="width:160px">',
+        layoutTemplates: {main2: '{preview} {browse}'},
+        allowedFileExtensions: ["jpg", "png", "gif"]
+    });  
 
 
     // olay sil

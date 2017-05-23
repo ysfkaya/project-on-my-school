@@ -88,6 +88,7 @@ $(document).ready(function(){
             
         });
 
+    // mesaj oku 
     $("body").on('click','#mesaj_oku',function(event) {
         event.preventDefault();
         var _id = $(this).attr("data-id");
@@ -102,7 +103,8 @@ $(document).ready(function(){
                         title : data.baslik,
                         text: data.mesaj,
                         confirmButtonText : 'Anlaşıldı',
-                        closeOnConfirm : true
+                        closeOnConfirm : true,
+                        html: true
                     });
                 }else{
                     swal({
@@ -189,7 +191,8 @@ $(document).ready(function(){
     // eposta değiştir
      $("body").on('submit', '#eposta', function(event)  {
         event.preventDefault();
-
+        $('#eposta_goster').modal('hide');
+        $("#loading").removeClass('hidden');
         var $eposta = $("#y_eposta").val();
         $.ajax({
             type:'POST',
@@ -197,6 +200,7 @@ $(document).ready(function(){
             data:{eposta:$eposta},
             dataType:'json',
             success: function (data) {
+                $('#loading').addClass('hidden');
                 if(data.var){
                     swal("Uyarı !",data.var,"warning");
                 }else if(data.gonderildi){
@@ -244,6 +248,8 @@ $(document).ready(function(){
                 }else{
                     swal("Hata !",data.hata,'error');
                 }
+                $('#eposta')[0].reset();
+                
             }
         });
 

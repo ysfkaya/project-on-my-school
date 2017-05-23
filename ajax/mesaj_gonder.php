@@ -1,3 +1,4 @@
+
 <?php 
     require '../system/database.php';
     require '../system/system.php';
@@ -6,9 +7,9 @@
     if (isPost() && isAjax()){
         $array = array();
         $gonderen = post('gonderen');
-        $baslik = post('baslik');
+        $baslik = post('baslik',true);
         $alici = post('alici');
-        $mesaj = post('mesaj');
+        $mesaj = post('mesaj',true);
 
         $ekle = $db->prepare("INSERT INTO mesajlar SET
             gonderen_id =:gonderen,

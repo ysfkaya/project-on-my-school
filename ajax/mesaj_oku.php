@@ -1,3 +1,5 @@
+
+
 <?php 
     require '../system/database.php';
     require '../system/system.php';
@@ -19,8 +21,8 @@
             $sorgu = $db->query("SELECT * FROM mesajlar WHERE mesaj_id = $id");
             $row = $sorgu->fetch(PDO::FETCH_ASSOC);
             $array['okundu'] = true;
-            $array['baslik'] = $row['baslik'];
-            $array['mesaj'] = $row['mesaj'];
+            $array['baslik'] = strip_tags(ss($row['baslik']));
+            $array['mesaj'] = ss($row['mesaj']);
         }else{
             $array['hata'] = "Mesaj okuma başarısız. ".$db->errorInfo()[2];
         }

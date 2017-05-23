@@ -55,6 +55,7 @@
 
 </head>
 <body>
+ <div id="loading" class="hidden"></div>
     <div class="profil">
         <div class="container">
             <div class="row">
@@ -77,8 +78,6 @@
                             // proje nin kontrol sayısı.
                             if ($id) {
                                 $kontrols = $db->query("SELECT * FROM kontrol WHERE proje_id = $id");                                
-                            }else{
-                                $kontrols = 0;
                             }
 
                             $ogrenciler = $get[1]->fetchAll(PDO::FETCH_ASSOC); // proje ekibi oluştururken kullanılacak öğrenciler değişkeni.

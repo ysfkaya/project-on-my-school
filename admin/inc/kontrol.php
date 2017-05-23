@@ -2,14 +2,19 @@
 echo !defined("ADMIN") ? die("İzinsiz Giriş İsteği?") : null;
 
 $id = get('id') ? get('id') : go(url('projeler'));
-$query = $db->prepare("SELECT proje_konu FROM projeler WHERE proje_id = :id");
+
+$query = $db->prepare("SELECT proje_konu,proje_uygunluk FROM projeler WHERE proje_id = :id");
 $query->execute(array(
     'id' => $id
 ));
+$p = $query->fetch(PDO::FETCH_ASSOC);
 if ($query->rowCount() < 1) {
     warning('Proje bulunamadı');
-}else{
-$proje = $query->fetch(PDO::FETCH_ASSOC);
+}else if($p['proje_uygunluk'] == "2" || $p['proje_uygunluk'] == null ){
+    info('Proje kontrol girdisi oluşturmak için lütfen ilk önce projeyi onaylayın.');
+}
+else{
+
 ?>
   <div class="row">
     <div class="col-md-12">
@@ -56,7 +61,7 @@ $proje = $query->fetch(PDO::FETCH_ASSOC);
                     <div class="form-group">
                         <label class="control-label col-md-4">Proje</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" value="<?=$proje['proje_konu']?>" disabled>
+                            <input type="text" class="form-control" value="<?=$p['proje_konu']?>" disabled>
                         </div>
                     </div>
                     <div class="form-group">
@@ -78,6 +83,7 @@ $proje = $query->fetch(PDO::FETCH_ASSOC);
                                 <span class="input-group-addon"  style="background: transparent !important">
                                     <i class="fa fa-percent"></i>
                                 </span>
+                                <!-- Girilen değerin sayısal olması ve 100 ün üzerinde olmaması için ayarlanan input -->
                                 <input style="background: transparent !important" type="number" name="yuzde" min="1" maxlength="3" oninput="this.value = this.value.replace(/[^0-9.]/g, ''); this.value = this.value.replace(/(\..*)\./g, '$1'); javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);javascript: if (this.value > 100) this.value = 100;" class="form-control" required>
                             </div>
                         </div>

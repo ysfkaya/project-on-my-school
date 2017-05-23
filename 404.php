@@ -40,6 +40,5 @@
                     
     </div>  
     </div>
-    <?php require_once 'partials/scripts.php'; ?>
   </body>
 </html>

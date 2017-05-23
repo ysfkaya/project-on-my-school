@@ -1,32 +1,56 @@
-<?php
+<?php 
 
 /**
  * POST isteklerinde xss ve ajax işlemlerinde güvenlik önlemleri için oluşturulmuştur.
  * @param  $par POST edilen değeri alır
+ * @param  $text Html etiketlerini kaydetmek istediğimizde değerini true yaparız.
  * @return void
  */
-function post($par){
+function post($par,$text = false){
     if (is_array($_POST[$par])){
         return array_map(function ($item){
-            return htmlspecialchars(addslashes(trim($item)),ENT_COMPAT,"UTF-8",false);
+            if ($text === true) {
+                $post = addslashes(trim($item)); 
+            }else{
+                $post = htmlspecialchars(addslashes(trim($item)),ENT_COMPAT,"UTF-8",false);
+            }
+            return $post;
         },$_POST[$par]);
     }else{
-        return htmlspecialchars(addslashes(trim($_POST[$par])),ENT_COMPAT,"UTF-8",false);
+        if ($text === true) {
+            $post = addslashes(trim($_POST[$par])); 
+        }else{
+            $post = htmlspecialchars(addslashes(trim($_POST[$par])),ENT_COMPAT,"UTF-8",false);
+        }
+        return $post;
+     
     }
 
 }
 /**
  * GET isteklerinde xss ve ajax işlemlerinde güvenlik önlemleri için oluşturulmuştur.
  * @param  $par GET edilen değeri alır
+ * @param  $text Html etiketlerini kaydetmek istediğimizde değerini true yaparız.
  * @return void
  */
-function get($par){
-    if (is_array($_GET[$par])){
+function get($par,$text = false){
+    if (is_array($_POST[$par])){
         return array_map(function ($item){
-            return htmlspecialchars(addslashes(trim($item)),ENT_COMPAT,"UTF-8",false);
+            if ($text === true) {
+                $post = addslashes(trim($item)); 
+            }else{
+                $post = htmlspecialchars(addslashes(trim($item)),ENT_COMPAT,"UTF-8",false);
+            }
+            return $post;
         },$_GET[$par]);
     }else{
-        return htmlspecialchars(addslashes(trim($_GET[$par])),ENT_COMPAT,"UTF-8",false);
+        if ($text === true) {
+            $post = addslashes(trim($_GET[$par])); 
+        }else{
+            $post = htmlspecialchars(addslashes(trim($_GET[$par])),ENT_COMPAT,"UTF-8",false);
+        }
+        return $post;
+     
     }
 
 }
@@ -50,8 +74,8 @@ function create_session(array $param){
  * @param  $par
  * @return void
  */
-function ss($par)
-{
+function ss($par){
+    
     return stripslashes($par);
 }
 /**
@@ -87,7 +111,7 @@ function isSession($param){
  * @return boolean
  */
 function isAjax(){
-        if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH'])){
+        if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == "XMLHttpRequest"){
             return true;
         }
 
@@ -98,10 +122,10 @@ function isAjax(){
 /**
  * Yönlendirme işlemlerinde kullanılır.
  * @param  string   $url  Gidilecek url
- * @param  int|null $time Kaç saniye sonra yönlendireleceğini belirler.
+ * @param  integer  $time Kaç saniye sonra yönlendireleceğini belirler.
  * @return void        
  */
-function go($url,int $time = null){
+function go($url,$time = null){
     if ($time){
         return header("Refresh:{$time};url={$url}");
     }else{
