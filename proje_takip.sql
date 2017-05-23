@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 20, 2017 at 11:00 PM
+-- Generation Time: May 24, 2017 at 01:30 AM
 -- Server version: 5.5.55-0ubuntu0.14.04.1
 -- PHP Version: 5.6.30-10+deb.sury.org~trusty+2
 
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `dosyalar` (
   `dosya_boyut` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`dosya_id`),
   KEY `proje_id` (`proje_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `dosyalar`
@@ -67,7 +67,8 @@ CREATE TABLE IF NOT EXISTS `dosyalar` (
 
 INSERT INTO `dosyalar` (`dosya_id`, `proje_id`, `dosya_ad`, `dosya_uzantı`, `dosya_yol`, `dosya_link`, `dosya_boyut`) VALUES
 (3, 70, '2017-05-17 23.57.46.zip', 'application/zip', '/var/www/html/proje/dosyalar/5 - test/2017-05-17 23.57.46.zip', 'http://localhost/proje/dosyalar//2017-05-17 23.57.46.zip', '90325'),
-(4, 67, '2017-05-18 00.08.11.zip', 'application/zip', '/var/www/html/proje/dosyalar/5 - Proje Takip Sistemi/2017-05-18 00.08.11.zip', 'http://localhost/proje/dosyalar//2017-05-18 00.08.11.zip', '90325');
+(4, 67, '2017-05-18 00.08.11.zip', 'application/zip', '/var/www/html/proje/dosyalar/5 - Proje Takip Sistemi/2017-05-18 00.08.11.zip', 'http://localhost/proje/dosyalar//2017-05-18 00.08.11.zip', '90325'),
+(5, 71, '2017-05-23 02.29.08.zip', 'application/zip', '/var/www/html/proje/dosyalar/5 - test/2017-05-23 02.29.08.zip', 'http://localhost/proje/dosyalar//2017-05-23 02.29.08.zip', '90325');
 
 -- --------------------------------------------------------
 
@@ -83,16 +84,9 @@ CREATE TABLE IF NOT EXISTS `kontrol` (
   `proje_id` int(11) NOT NULL,
   `kontrol_baslik` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`kontrol_id`),
-  KEY `proje_id` (`proje_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
-
---
--- Dumping data for table `kontrol`
---
-
-INSERT INTO `kontrol` (`kontrol_id`, `kontrol_not`, `proje_yuzde`, `kontrol_tarih`, `proje_id`, `kontrol_baslik`) VALUES
-(1, 'Proje devam etsin.', 10, '2017-05-13 15:39:21', 66, 'Bu bir kontrol testi'),
-(2, 'test 2', 50, '2017-05-13 15:39:39', 66, 'test');
+  KEY `proje_id` (`proje_id`),
+  KEY `proje_id_2` (`proje_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
 
 -- --------------------------------------------------------
 
@@ -109,8 +103,17 @@ CREATE TABLE IF NOT EXISTS `mesajlar` (
   `tarih` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `okuma` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`mesaj_id`),
-  KEY `gonderen_id` (`gonderen_id`,`alici_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+  KEY `gonderen_id` (`gonderen_id`,`alici_id`),
+  KEY `alici_id` (`alici_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `mesajlar`
+--
+
+INSERT INTO `mesajlar` (`mesaj_id`, `gonderen_id`, `alici_id`, `mesaj`, `baslik`, `tarih`, `okuma`) VALUES
+(7, 1, 5, 'İçerik Örneği', 'Başlık Örneği', '2017-05-20 23:49:48', 1),
+(8, 1, 6, 'İçerik Örneği 2', '<b>Başlık Örneği</b>', '2017-05-20 23:49:48', 1);
 
 -- --------------------------------------------------------
 
@@ -131,16 +134,15 @@ CREATE TABLE IF NOT EXISTS `ogrenciler` (
   PRIMARY KEY (`ogrenci_id`),
   UNIQUE KEY `ogrenci_no` (`ogrenci_no`,`ogrenci_eposta`),
   KEY `proje_id` (`proje_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `ogrenciler`
 --
 
 INSERT INTO `ogrenciler` (`ogrenci_id`, `proje_id`, `ogrenci_no`, `ogrenci_sifre`, `ogrenci_isim`, `ogrenci_eposta`, `ogrenci_kayit`, `ogrenci_giris`, `resim`) VALUES
-(5, 71, '151809080', 'b45b69c3584350cf9a757654022e73df', 'Yusuf Kaya', 'ysf.ky_1903@hotmail.com', '2017-04-19 21:54:55', '2017-05-20 19:56:43', 'http://localhost/proje/frontend/avatar/1493780797.jpg'),
-(6, 67, '151809010', 'c336268b8ed95daaf5818f3c14c45c75', 'John Doe', 'pvpc11@hotmail.com', '2017-05-13 12:50:27', '2017-05-17 21:20:00', 'http://localhost/proje/frontend/avatar/user.png'),
-(7, 71, '151809022', 'c336268b8ed95daaf5818f3c14c45c75', 'Tayfun Serin', 'pvpc11@hotmail.com', '2017-05-13 12:50:27', '2017-05-17 21:20:00', 'http://localhost/proje/frontend/avatar/user.png');
+(5, NULL, '151809080', 'b45b69c3584350cf9a757654022e73df', 'Yusuf Kaya', 'ysf.ky_1903@hotmail.com', '2017-04-19 21:54:55', '2017-05-23 22:20:37', 'http://localhost/proje/frontend/avatar/1495326927.png'),
+(6, NULL, '151809022', 'b45b69c3584350cf9a757654022e73df', 'Tayfun Serin', 'ysf.ky_1903@hotmail.com', '2017-04-19 21:54:55', '2017-05-22 22:55:34', 'http://localhost/proje/frontend/avatar/1495326927.png');
 
 -- --------------------------------------------------------
 
@@ -165,7 +167,7 @@ CREATE TABLE IF NOT EXISTS `ogretmenler` (
 --
 
 INSERT INTO `ogretmenler` (`ogretmen_id`, `ogretmen_eposta`, `ogretmen_kullaniciadi`, `ogretmen_ad`, `ogretmen_soyad`, `ogretmen_sifre`, `ogretmen_kayit`, `ogretmen_giris`) VALUES
-(1, 'admin@admin', 'admin', 'Test', 'Test Soyisim', '21232f297a57a5a743894a0e4a801fc3', '0000-00-00 00:00:00', '2017-05-19 20:27:46'),
+(1, 'admin@admin', 'admin', 'Yetkili', 'Öğretmen', '21232f297a57a5a743894a0e4a801fc3', '0000-00-00 00:00:00', '2017-05-23 22:20:54'),
 (2, 'test@test.com', 'test12', 'test ad', 'test soyadı', 'test', '2017-05-07 22:47:48', NULL);
 
 -- --------------------------------------------------------
@@ -190,94 +192,47 @@ CREATE TABLE IF NOT EXISTS `olaylar` (
   KEY `mesaj_id` (`mesaj_id`),
   KEY `dosya_id` (`dosya_id`),
   KEY `proje_id_3` (`proje_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=189 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=235 ;
 
 --
 -- Dumping data for table `olaylar`
 --
 
 INSERT INTO `olaylar` (`olay_id`, `proje_id`, `ogrenci_id`, `mesaj_id`, `dosya_id`, `olay`, `olay_tip`, `olay_tarih`) VALUES
-(94, 67, 5, NULL, NULL, 'Proje Ekibi Oluşturuldu', 'proje-ekip', '2017-05-13 15:43:33'),
-(95, 67, 5, NULL, NULL, 'Proje Eklendi', 'proje-eklendi', '2017-05-13 15:43:33'),
 (96, NULL, 5, NULL, NULL, 'Giriş Yapıldı', 'giriş', '2017-05-13 16:04:59'),
 (97, NULL, 5, NULL, NULL, 'Giriş Yapıldı', 'giriş', '2017-05-13 17:00:04'),
 (98, NULL, 5, NULL, NULL, 'Giriş Yapıldı', 'giriş', '2017-05-13 17:00:06'),
-(99, 67, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-13 18:21:53'),
-(101, 67, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-13 18:24:37'),
 (102, NULL, 5, NULL, NULL, 'Dosya Silindi', 'dosya-sil', '2017-05-13 18:24:44'),
-(103, 67, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-13 18:26:35'),
-(104, 67, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-13 18:26:52'),
-(105, 67, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-13 18:27:47'),
-(107, 67, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-13 18:28:20'),
 (108, NULL, 5, NULL, NULL, 'Giriş Yapıldı', 'giriş', '2017-05-17 20:53:24'),
 (109, NULL, 5, NULL, NULL, 'Dosya Silindi', 'dosya-sil', '2017-05-17 20:53:32'),
 (112, NULL, 5, NULL, NULL, 'Bir Proje Silindi', 'proje-sil', '2017-05-17 20:54:26'),
-(118, NULL, 6, NULL, NULL, 'Giriş Yapıldı', 'giriş', '2017-05-17 21:04:35'),
-(119, 67, 6, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-17 21:05:27'),
-(120, 67, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-17 21:05:49'),
-(121, 67, 6, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-17 21:05:54'),
-(122, 67, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-17 21:06:16'),
-(123, 67, 6, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-17 21:06:38'),
-(124, NULL, 6, NULL, NULL, 'Çıkış Yapıldı', 'çıkış', '2017-05-17 21:07:24'),
-(125, 67, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-17 21:07:58'),
-(126, 67, 5, NULL, 4, 'Dosya Yüklendi', 'dosya-yukle', '2017-05-17 21:08:11'),
 (127, NULL, 5, NULL, NULL, 'Çıkış Yapıldı', 'çıkış', '2017-05-17 21:19:49'),
-(128, NULL, 6, NULL, NULL, 'Giriş Yapıldı', 'giriş', '2017-05-17 21:20:00'),
-(130, NULL, 5, NULL, NULL, 'Giriş Yapıldı', 'giriş', '2017-05-17 21:20:41'),
-(131, 67, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-17 21:20:48'),
-(133, 67, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-17 21:21:20'),
-(135, 67, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-17 21:22:36'),
-(137, 67, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-17 21:24:00'),
-(139, 67, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-17 21:26:56'),
-(140, 67, 6, NULL, NULL, 'Projeden Çıkıldı', 'proje-cik', '2017-05-17 21:27:00'),
-(141, 67, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-17 21:27:20'),
-(142, 67, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-17 21:27:32'),
-(143, 67, 6, NULL, NULL, 'Projeden Çıkıldı', 'proje-cik', '2017-05-17 21:27:41'),
 (144, NULL, 5, NULL, NULL, 'Giriş Yapıldı', 'giriş', '2017-05-19 15:06:59'),
 (145, NULL, 5, NULL, NULL, 'Giriş Yapıldı', 'giriş', '2017-05-19 20:02:41'),
-(146, 67, 5, NULL, NULL, 'Projeden Çıkıldı', 'proje-cik', '2017-05-19 20:09:47'),
 (147, NULL, 5, NULL, NULL, 'Çıkış Yapıldı', 'çıkış', '2017-05-19 20:27:42'),
 (148, NULL, 5, NULL, NULL, 'Giriş Yapıldı', 'giriş', '2017-05-19 20:28:46'),
-(149, 67, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-19 20:28:56'),
-(150, 67, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-19 20:30:06'),
-(151, 67, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-19 20:30:13'),
-(152, 67, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-19 20:34:16'),
-(153, NULL, 5, NULL, NULL, 'Proje Ekibi Oluşturuldu', 'proje-ekip', '2017-05-19 20:34:47'),
-(154, NULL, 5, NULL, NULL, 'Proje Eklendi', 'proje-eklendi', '2017-05-19 20:34:47'),
-(155, NULL, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-19 20:43:56'),
-(156, NULL, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-19 20:59:05'),
-(157, NULL, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-19 20:59:15'),
-(158, NULL, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-19 21:00:12'),
-(159, NULL, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-19 21:00:22'),
-(160, NULL, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-19 21:08:54'),
-(161, NULL, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-19 21:09:08'),
-(162, NULL, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-19 21:09:29'),
-(163, NULL, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-19 21:16:42'),
-(164, NULL, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-19 21:18:49'),
-(165, NULL, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-19 21:19:06'),
-(166, NULL, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-19 21:27:46'),
-(167, NULL, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-19 21:28:05'),
-(168, NULL, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-19 21:28:26'),
-(169, NULL, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-19 21:31:37'),
-(170, NULL, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-19 21:31:45'),
-(171, NULL, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-19 21:43:43'),
-(172, NULL, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-19 21:43:50'),
-(173, NULL, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-19 21:47:33'),
-(174, NULL, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-19 21:47:38'),
-(175, NULL, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-19 21:48:11'),
-(176, NULL, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-19 21:48:17'),
-(177, NULL, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-19 21:54:46'),
-(178, NULL, 5, NULL, NULL, 'Proje Güncellendi', 'proje-güncellendi', '2017-05-19 21:54:52'),
-(179, NULL, 5, NULL, NULL, 'Bir Proje Silindi', 'proje-sil', '2017-05-19 22:02:31'),
-(180, NULL, 5, NULL, NULL, 'Proje Ekibi Oluşturuldu', 'proje-ekip', '2017-05-19 22:10:23'),
-(181, NULL, 5, NULL, NULL, 'Proje Eklendi', 'proje-eklendi', '2017-05-19 22:10:23'),
-(182, NULL, 5, NULL, NULL, 'Bir Proje Silindi', 'proje-sil', '2017-05-19 22:10:35'),
-(183, NULL, 5, NULL, NULL, 'Proje Ekibi Oluşturuldu', 'proje-ekip', '2017-05-19 22:12:13'),
-(184, NULL, 5, NULL, NULL, 'Proje Eklendi', 'proje-eklendi', '2017-05-19 22:12:13'),
-(185, NULL, 5, NULL, NULL, 'Bir Proje Silindi', 'proje-sil', '2017-05-19 22:14:23'),
-(186, 71, 5, NULL, NULL, 'Proje Ekibi Oluşturuldu', 'proje-ekip', '2017-05-19 22:15:19'),
-(187, 71, 5, NULL, NULL, 'Proje Eklendi', 'proje-eklendi', '2017-05-19 22:15:19'),
-(188, NULL, 5, NULL, NULL, 'Giriş Yapıldı', 'giriş', '2017-05-20 19:56:43');
+(188, NULL, 5, NULL, NULL, 'Giriş Yapıldı', 'giriş', '2017-05-20 19:56:43'),
+(189, NULL, 5, NULL, NULL, 'Giriş Yapıldı', 'giriş', '2017-05-20 22:37:29'),
+(192, NULL, 5, NULL, NULL, 'Bir Mesaj Silindi', 'mesaj-sil', '2017-05-20 23:20:42'),
+(215, NULL, 5, NULL, NULL, 'Bir Mesaj Silindi', 'mesaj-sil', '2017-05-20 23:48:27'),
+(216, NULL, 5, NULL, NULL, 'Bir Mesaj Silindi', 'mesaj-sil', '2017-05-20 23:48:30'),
+(217, NULL, 5, NULL, NULL, 'Bir Mesaj Silindi', 'mesaj-sil', '2017-05-20 23:48:32'),
+(218, NULL, 5, 7, NULL, 'Mesaj Okundu', 'mesaj-oku', '2017-05-20 23:49:55'),
+(219, NULL, 5, 7, NULL, 'Mesaj Okundu', 'mesaj-oku', '2017-05-20 23:54:38'),
+(220, NULL, 5, NULL, NULL, 'Çıkış Yapıldı', 'çıkış', '2017-05-21 00:06:01'),
+(221, NULL, 5, NULL, NULL, 'Giriş Yapıldı', 'giriş', '2017-05-21 00:20:28'),
+(222, NULL, 5, NULL, NULL, 'Çıkış Yapıldı', 'çıkış', '2017-05-21 00:22:05'),
+(223, NULL, 5, NULL, NULL, 'Giriş Yapıldı', 'giriş', '2017-05-21 00:34:56'),
+(224, NULL, 5, NULL, NULL, 'Profil Güncellendi', 'profil-güncellendi', '2017-05-21 00:35:27'),
+(225, NULL, 5, NULL, NULL, 'Giriş Yapıldı', 'giriş', '2017-05-21 01:26:50'),
+(226, NULL, 5, NULL, NULL, 'Giriş Yapıldı', 'giriş', '2017-05-21 15:16:02'),
+(227, NULL, 5, NULL, NULL, 'Eposta Değiştirdi', 'eposta-degistirildi', '2017-05-21 15:22:59'),
+(228, NULL, 5, NULL, NULL, 'Eposta Değiştirdi', 'eposta-degistirildi', '2017-05-21 15:25:39'),
+(229, NULL, 5, NULL, NULL, 'Giriş Yapıldı', 'giriş', '2017-05-22 22:12:39'),
+(230, NULL, 5, NULL, NULL, 'Çıkış Yapıldı', 'çıkış', '2017-05-22 22:13:25'),
+(231, NULL, 5, NULL, NULL, 'Giriş Yapıldı', 'giriş', '2017-05-22 22:55:34'),
+(232, NULL, 5, NULL, NULL, 'Giriş Yapıldı', 'giriş', '2017-05-22 23:28:49'),
+(234, NULL, 5, NULL, NULL, 'Giriş Yapıldı', 'giriş', '2017-05-23 22:20:37');
 
 -- --------------------------------------------------------
 
@@ -303,21 +258,20 @@ CREATE TABLE IF NOT EXISTS `projeler` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=72 ;
 
 --
--- Dumping data for table `projeler`
---
-
-INSERT INTO `projeler` (`proje_id`, `proje_no`, `proje_konu`, `proje_amac`, `proje_tur`, `olusturan_id`, `proje_dosya`, `proje_uygunluk`, `proje_olusturma`, `proje_bitirme`, `proje_duzenleme`) VALUES
-(67, 1, 'Proje Takip Sistemi', 'Projeleri internet üzerinden takip etmek', 2, NULL, '/var/www/html/proje/dosyalar/5 - Proje Takip Sistemi', 1, '2017-05-13 15:43:33', '2017-05-26 15:43:59', '2017-05-13 15:44:14'),
-(71, NULL, 'test', 'test', 2, 5, '/var/www/html/proje/dosyalar/5 - test', NULL, '2017-05-19 22:15:18', NULL, NULL);
-
---
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `kontrol`
+--
+ALTER TABLE `kontrol`
+  ADD CONSTRAINT `foreign_key_projeler_id_kontrol_projeler_proje_id` FOREIGN KEY (`proje_id`) REFERENCES `kontrol` (`proje_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `mesajlar`
 --
 ALTER TABLE `mesajlar`
+  ADD CONSTRAINT `foreign_key_ogrenci_id_mesajlar_alici_id` FOREIGN KEY (`alici_id`) REFERENCES `ogrenciler` (`ogrenci_id`) ON DELETE CASCADE,
   ADD CONSTRAINT `foreign_key_ogretmen_id_mesajlar_gonderen_id` FOREIGN KEY (`gonderen_id`) REFERENCES `ogretmenler` (`ogretmen_id`) ON DELETE CASCADE;
 
 --
@@ -333,7 +287,7 @@ ALTER TABLE `olaylar`
   ADD CONSTRAINT `foreign_dosyalar_dosya_id` FOREIGN KEY (`dosya_id`) REFERENCES `dosyalar` (`dosya_id`) ON DELETE CASCADE,
   ADD CONSTRAINT `foreign_mesajlar_mesaj_id` FOREIGN KEY (`mesaj_id`) REFERENCES `mesajlar` (`mesaj_id`) ON DELETE CASCADE,
   ADD CONSTRAINT `foreign_ogrenciler_ogrenci_id` FOREIGN KEY (`ogrenci_id`) REFERENCES `ogrenciler` (`ogrenci_id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `foreign_projeler_proje_id` FOREIGN KEY (`proje_id`) REFERENCES `projeler` (`proje_id`) ON DELETE SET NULL;
+  ADD CONSTRAINT `foreign_projeler_proje_id` FOREIGN KEY (`proje_id`) REFERENCES `projeler` (`proje_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `projeler`
