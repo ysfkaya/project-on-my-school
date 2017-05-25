@@ -491,5 +491,11 @@ $(document).ready(function(){
 
     });
 
+    setInterval(function(){ 
+        if ($('#modal-video').hasClass('in') == false){
+            $('video')[0].pause();
+        }
+     }, 500);
+
 
 });

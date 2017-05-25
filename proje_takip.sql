@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 24, 2017 at 01:30 AM
+-- Generation Time: May 24, 2017 at 01:46 AM
 -- Server version: 5.5.55-0ubuntu0.14.04.1
 -- PHP Version: 5.6.30-10+deb.sury.org~trusty+2
 
@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `kontrol` (
   PRIMARY KEY (`kontrol_id`),
   KEY `proje_id` (`proje_id`),
   KEY `proje_id_2` (`proje_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=5 ;
 
 -- --------------------------------------------------------
 
@@ -167,7 +167,7 @@ CREATE TABLE IF NOT EXISTS `ogretmenler` (
 --
 
 INSERT INTO `ogretmenler` (`ogretmen_id`, `ogretmen_eposta`, `ogretmen_kullaniciadi`, `ogretmen_ad`, `ogretmen_soyad`, `ogretmen_sifre`, `ogretmen_kayit`, `ogretmen_giris`) VALUES
-(1, 'admin@admin', 'admin', 'Yetkili', 'Öğretmen', '21232f297a57a5a743894a0e4a801fc3', '0000-00-00 00:00:00', '2017-05-23 22:20:54'),
+(1, 'admin@admin', 'admin', 'Yetkili', 'Öğretmen', '21232f297a57a5a743894a0e4a801fc3', '0000-00-00 00:00:00', '2017-05-23 22:44:56'),
 (2, 'test@test.com', 'test12', 'test ad', 'test soyadı', 'test', '2017-05-07 22:47:48', NULL);
 
 -- --------------------------------------------------------
@@ -192,7 +192,7 @@ CREATE TABLE IF NOT EXISTS `olaylar` (
   KEY `mesaj_id` (`mesaj_id`),
   KEY `dosya_id` (`dosya_id`),
   KEY `proje_id_3` (`proje_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=235 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=236 ;
 
 --
 -- Dumping data for table `olaylar`
@@ -255,7 +255,7 @@ CREATE TABLE IF NOT EXISTS `projeler` (
   PRIMARY KEY (`proje_id`),
   UNIQUE KEY `proje_no` (`proje_no`),
   KEY `olusturan_id` (`olusturan_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=72 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=73 ;
 
 --
 -- Constraints for dumped tables
@@ -265,7 +265,7 @@ CREATE TABLE IF NOT EXISTS `projeler` (
 -- Constraints for table `kontrol`
 --
 ALTER TABLE `kontrol`
-  ADD CONSTRAINT `foreign_key_projeler_id_kontrol_projeler_proje_id` FOREIGN KEY (`proje_id`) REFERENCES `kontrol` (`proje_id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `foreign_key_projeler_id_kontrol_projeler_proje_id` FOREIGN KEY (`proje_id`) REFERENCES `projeler` (`proje_id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `mesajlar`

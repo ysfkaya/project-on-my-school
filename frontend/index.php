@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="<?=asset("css/sweetalert.css");?>">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="<?=asset("css/custom.css")?>" media="screen" title="no title">
+    <link rel="stylesheet" href="<?=asset("css/video.css")?>" media="screen" title="no title">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -104,10 +105,33 @@
             <h2>NASIL ÇALIŞIR ?</h2>
             <p>Bu sitenin nasıl çalıştığı hakkında sizin için kısa bir videomuz var.</p>
         </div>
-        <span class="btn-play">
+        <span class="btn-play" data-toggle="modal"  data-target="#modal-video">
           <i class="fa fa-play"></i>
         </span>
       </div>
+    </div>
+
+
+    <!-- MODAL -->
+    <div class="modal fade" id="modal-video" tabindex="-1" role="dialog" aria-labelledby="modal-video-label">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-video">
+                        <div class="embed-responsive embed-responsive-16by9">
+                          <video width="320" height="240" controls>
+                              <source src="video/proje-takibim.mp4" type="video/mp4">
+                          </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- <div class="contact section text-center" id="contact">
       <div class="container">
