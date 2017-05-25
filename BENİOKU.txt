@@ -1,0 +1,29 @@
+************** Proje Takip Sistemi ****************
+
+Bu proje Kırkağaç Meslek Yüksek Okulu - Celal Bayar Üniversitesi öğrencileri,
+
+151809080 numaralı Yusuf KAYA
+ve
+151809022 numaralı Tayfun Serin
+
+öğrencileri tarafından geliştirilimiştir.
+
+***************************************************
+
+Projeyi sunucuya atarken dikkat etmeniz gerekenler ;
+
+1-) İlk olarak system/database.php dosyasında ki,
+
+define("dir",$_SERVER['DOCUMENT_ROOT'].'/proje/');
+
+define("URL","http://".$_SERVER["SERVER_NAME"]."/proje");
+
+bölümünü aşşağıdaki gibi değiştirin.
+
+define("dir",$_SERVER['DOCUMENT_ROOT']);
+
+define("URL","http://".$_SERVER["SERVER_NAME"]);
+
+2-) Daha sonra veritabanı ayarlarınız için, system/config.php dosyasındaki ilgili alanları veritabanı ayarlarınıza göre güncelleyin.
+
+3-) Sistemi kullanmaya başlayabilirsiniz.
