@@ -42,7 +42,7 @@
               <span class="icon-bar"></span>
             </button> 
             <a class="navbar-brand page-scroll" href="#home">
-               Proje Takibim
+               <?= !empty($ayar['site_anasayfa_logo']) ? '<img src="'.$ayar['site_anasayfa_logo'].'" width=75 height=50 style="position:relative;bottom:10px" alt="proje takibim" title="Proje Takibim">' : 'Proje Takibim';?>
             </a>
           </div>
 
