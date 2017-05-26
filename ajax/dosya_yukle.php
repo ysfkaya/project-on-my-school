@@ -20,10 +20,8 @@
 			        $uzantı = substr($dosya['name'][$i],-4,4);
 			        $adı = date('Y-m-d H.i.s').$uzantı;
 
-					$string = $yol;
-					$parca = explode('dosyalar\\',$string);
-					$parcala2 = explode('\\',$parca[1]);
-					$dosya_adı = $parcala2[0];
+					$string = explode('dosyalar/', $yol);
+					$dosya_adı = $string[1];
 			        $url = URL."/dosyalar/".$dosya_adı."/".$adı;
 			        $buraya = $yol.DIRECTORY_SEPARATOR.$adı;
 
